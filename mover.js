@@ -24,6 +24,7 @@ class Orbit {
     this.MEAN_ANOMALY_UPDATED = undefined;
     this.SEMI_MAJOR_AXIS = undefined;
     this.ECCENTRIC_ANOMALY = undefined;
+    this.GMST = undefined;
     this.R = undefined;
     this.Rdot = undefined;
     this.lon = undefined;
@@ -208,15 +209,15 @@ class Orbit {
     const T = (JD - 2451545.0) / 36525.0;
 
     // Calculate the mean sidereal time in degrees
-    let GMST =
+    this.GMST =
       280.46061837 +
       360.98564736629 * (JD - 2451545.0) +
       T ** 2 * (0.000387933 - T / 38710000);
 
     // Ensure the result is in the range [0, 360] degrees
-    GMST %= 360;
+    this.GMST %= 360;
 
-    return GMST;
+    return this.GMST;
   }
 
   conversionToGeodic() {
