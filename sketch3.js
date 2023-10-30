@@ -30,7 +30,6 @@ var s3 = function (sketch) {
     for (let index = 0; index < item.length; index++) {
       if (item[index] == ":") {
         val = parseInt(item.slice(0, index));
-        console.log(val);
       }
     }
     satellite_val = val;

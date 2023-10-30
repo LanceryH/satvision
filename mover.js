@@ -288,7 +288,6 @@ class Orbit {
     const d2 = new Date();
     this.EPOCH_NOW = d2;
     const dt = (d2 - d1) / 1000 - 3600; //FAUT METTRE LA CORRECTION DU GMT+00
-    console.log(dt);
 
     this.R = [
       this.create_array(0, nbPts),
