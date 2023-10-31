@@ -265,18 +265,14 @@ class Orbit {
 
   total() {
     this.create_date_data();
-    let nbOrbit = 1;
+    let nbOrbit = 2;
     this.MEAN_MOTION_SI = (2 * Math.PI) / this.PERIOD;
     this.SEMI_MAJOR_AXIS =
       Math.pow(this.MUE / this.MEAN_MOTION_SI ** 2, 1 / 3) * 1000;
 
     const nbIts = nbOrbit * this.PERIOD;
     const nbPts = 1000;
-    const T = this.create_arrange(
-      0,
-      parseInt(this.PERIOD),
-      parseInt(this.PERIOD / 1000)
-    );
+    const T = this.create_arrange(0, parseInt(nbIts), parseInt(nbIts / nbPts));
 
     const d1 = new Date(
       this.UPDATE_DATE_YEAR,

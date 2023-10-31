@@ -22,6 +22,7 @@ var s3 = function (sketch) {
     }
     my_object = new Orbit(data_sat[0]);
     my_object.total();
+    sketch.angleMode(sketch.DEGREES);
   };
 
   function mySelectEvent_listbox() {
@@ -48,7 +49,7 @@ var s3 = function (sketch) {
     sketch.fill(0, 100, 100);
     sketch.texture(img);
     sketch.rotateX(0);
-    sketch.rotateY(((180 + my_object.lon[0]) * Math.PI) / 180);
+    sketch.rotateY(-180);
     sketch.rotateZ(0);
     sketch.sphere(6371, 50, 50);
     sketch.pop();
@@ -59,9 +60,16 @@ var s3 = function (sketch) {
     sketch.beginShape(sketch.POINTS);
     for (let index = 0; index < my_object.R[0].length; index++) {
       sketch.vertex(
-        -my_object.R[0][index] / 1000,
-        -my_object.R[2][index] / 1000,
-        my_object.R[1][index] / 1000
+        (Math.cos((my_object.lat[index] * Math.PI) / 180) *
+          Math.sin((my_object.lon[index] * Math.PI) / 180) *
+          my_object.alt[index]) /
+          1000,
+        (-Math.sin((my_object.lat[index] * Math.PI) / 180) * my_object.alt[0]) /
+          1000,
+        (Math.cos((my_object.lat[index] * Math.PI) / 180) *
+          Math.cos((my_object.lon[index] * Math.PI) / 180) *
+          my_object.alt[index]) /
+          1000
       );
     }
     sketch.endShape();
@@ -72,9 +80,15 @@ var s3 = function (sketch) {
     sketch.strokeWeight(10);
     sketch.beginShape(sketch.POINTS);
     sketch.vertex(
-      -my_object.R[0][0] / 1000,
-      -my_object.R[2][0] / 1000,
-      my_object.R[1][0] / 1000
+      (Math.cos((my_object.lat[0] * Math.PI) / 180) *
+        Math.sin((my_object.lon[0] * Math.PI) / 180) *
+        my_object.alt[0]) /
+        1000,
+      (-Math.sin((my_object.lat[0] * Math.PI) / 180) * my_object.alt[0]) / 1000,
+      (Math.cos((my_object.lat[0] * Math.PI) / 180) *
+        Math.cos((my_object.lon[0] * Math.PI) / 180) *
+        my_object.alt[0]) /
+        1000
     );
     sketch.endShape();
     sketch.pop();
