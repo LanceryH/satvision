@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <body style="background-color: black"></body>
+  <body></body>
   <head>
     <script src="./libraries/p5.min.js"></script>
     <script src="mover.js"></script>
@@ -10,37 +10,8 @@
   </head>
   <body>
     <script src="sketch3.js"></script>
-    <h1
-      id="param"
-      style="
-        color: white;
-        position: absolute;
-        font-size: 22px;
-        left: 1%;
-        top: 7%;
-      "
-    ></h1>
-    <img
-      src="map_earth.jpg"
-      alt="Italian Trulli"
-      style="
-        position: absolute;
-        top: 40%;
-        left: 1%;
-        width: 360px;
-        height: 180px;
-      "
-    />
-    <canvas
-      id="myCanvas"
-      width="360px"
-      height="180px"
-      style="
-        border: 0px solid rgb(33, 255, 244);
-        position: absolute;
-        top: 40%;
-        left: 1%;
-      "
-    ></canvas>
+    <h1 id="text_parameters"></h1>
+    <img id="image_planisphere" src="map_earth.jpg" alt="Italian Trulli" />
+    <canvas id="plot_groundtrack" width="360px" height="180px"></canvas>
   </body>
 </html>
