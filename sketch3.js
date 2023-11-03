@@ -9,6 +9,7 @@ function preload() {
 
 function setup() {
   let canvas = createCanvas(windowWidth, windowHeight, WEBGL);
+  canvas.position(0, 0);
   sel = createSelect();
   sel.id(12);
   for (let index = 0; index < 100; index++) {
