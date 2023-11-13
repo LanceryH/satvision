@@ -1,41 +1,144 @@
-import os
-from pathlib import Path
-import sys
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QUrl
+from PyQt5.QtWebEngineWidgets import QWebEngineView
 
-from PySide6.QtCore import QUrl
-from PySide6.QtWidgets import QApplication, QVBoxLayout, QWidget
-from PySide6.QtWebEngineWidgets import QWebEngineView
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        #MainWindow.resize(800, 600)
+        width = 800
+        height = 590
+        # setting  the fixed size of window
+        MainWindow.setFixedSize(width, height)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
+        self.tabWidget.setGeometry(QtCore.QRect(250, 10, 541, 561))
+        self.tabWidget.setObjectName("tabWidget")
+        self.tab_1 = QtWidgets.QWidget()
+        self.tab_1.setEnabled(True)
+        self.tab_1.setObjectName("tab_1")
+        self.webviewframe = QWebEngineView(self.tab_1)
+        self.webviewframe.load(QUrl(url))
+        self.webviewframe.setGeometry(QtCore.QRect(10, 10, 511, 411))
+        self.webviewframe.setObjectName("webviewframe")
+        self.groupBox_4 = QtWidgets.QGroupBox(self.tab_1)
+        self.groupBox_4.setGeometry(QtCore.QRect(10, 430, 511, 91))
+        self.groupBox_4.setObjectName("groupBox_4")
+        self.widget_2 = QtWidgets.QWidget(self.groupBox_4)
+        self.widget_2.setGeometry(QtCore.QRect(10, 20, 491, 61))
+        self.widget_2.setObjectName("widget_2")
+        self.label_4 = QtWidgets.QLabel(self.widget_2)
+        self.label_4.setGeometry(QtCore.QRect(20, 10, 91, 16))
+        self.label_4.setObjectName("label_4")
+        self.label_6 = QtWidgets.QLabel(self.widget_2)
+        self.label_6.setGeometry(QtCore.QRect(20, 30, 91, 16))
+        self.label_6.setObjectName("label_6")
+        self.tabWidget.addTab(self.tab_1, "")
+        self.tab_2 = QtWidgets.QWidget()
+        self.tab_2.setEnabled(True)
+        self.tab_2.setObjectName("tab_2")
+        self.widget_3 = QtWidgets.QWidget(self.tab_2)
+        self.widget_3.setGeometry(QtCore.QRect(10, 10, 511, 241))
+        self.widget_3.setObjectName("widget_3")
+        self.widget_4 = QtWidgets.QWidget(self.tab_2)
+        self.widget_4.setGeometry(QtCore.QRect(10, 260, 511, 261))
+        self.widget_4.setObjectName("widget_4")
+        self.tabWidget.addTab(self.tab_2, "")
+        self.groupBox_5 = QtWidgets.QGroupBox(self.centralwidget)
+        self.groupBox_5.setGeometry(QtCore.QRect(10, 10, 231, 561))
+        self.groupBox_5.setObjectName("groupBox_5")
+        self.groupBox = QtWidgets.QGroupBox(self.groupBox_5)
+        self.groupBox.setGeometry(QtCore.QRect(10, 20, 211, 81))
+        self.groupBox.setObjectName("groupBox")
+        self.pushButton_2 = QtWidgets.QPushButton(self.groupBox)
+        self.pushButton_2.setGeometry(QtCore.QRect(10, 50, 75, 23))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.comboBox = QtWidgets.QComboBox(self.groupBox)
+        self.comboBox.setGeometry(QtCore.QRect(100, 20, 101, 22))
+        self.comboBox.setObjectName("comboBox")
+        self.lineEdit = QtWidgets.QLineEdit(self.groupBox)
+        self.lineEdit.setGeometry(QtCore.QRect(100, 50, 101, 20))
+        self.lineEdit.setObjectName("lineEdit")
+        self.pushButton = QtWidgets.QPushButton(self.groupBox)
+        self.pushButton.setGeometry(QtCore.QRect(10, 20, 75, 23))
+        self.pushButton.setObjectName("pushButton")
+        self.groupBox_2 = QtWidgets.QGroupBox(self.groupBox_5)
+        self.groupBox_2.setGeometry(QtCore.QRect(10, 110, 211, 211))
+        self.groupBox_2.setObjectName("groupBox_2")
+        self.textBrowser = QtWidgets.QTextBrowser(self.groupBox_2)
+        self.textBrowser.setGeometry(QtCore.QRect(10, 30, 191, 171))
+        self.textBrowser.setObjectName("textBrowser")
+        self.groupBox_3 = QtWidgets.QGroupBox(self.groupBox_5)
+        self.groupBox_3.setGeometry(QtCore.QRect(10, 330, 211, 171))
+        self.groupBox_3.setObjectName("groupBox_3")
+        self.dateTimeEdit = QtWidgets.QDateTimeEdit(self.groupBox_3)
+        self.dateTimeEdit.setGeometry(QtCore.QRect(10, 40, 194, 22))
+        self.dateTimeEdit.setObjectName("dateTimeEdit")
+        self.dateTimeEdit_2 = QtWidgets.QDateTimeEdit(self.groupBox_3)
+        self.dateTimeEdit_2.setGeometry(QtCore.QRect(10, 100, 194, 22))
+        self.dateTimeEdit_2.setObjectName("dateTimeEdit_2")
+        self.label = QtWidgets.QLabel(self.groupBox_3)
+        self.label.setGeometry(QtCore.QRect(20, 80, 47, 13))
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(self.groupBox_3)
+        self.label_2.setGeometry(QtCore.QRect(20, 20, 47, 13))
+        self.label_2.setObjectName("label_2")
+        self.checkBox = QtWidgets.QCheckBox(self.groupBox_3)
+        self.checkBox.setGeometry(QtCore.QRect(20, 140, 70, 17))
+        self.checkBox.setObjectName("checkBox")
+        self.checkBox_2 = QtWidgets.QCheckBox(self.groupBox_3)
+        self.checkBox_2.setGeometry(QtCore.QRect(110, 140, 70, 17))
+        self.checkBox_2.setObjectName("checkBox_2")
+        self.progressBar = QtWidgets.QProgressBar(self.groupBox_5)
+        self.progressBar.setGeometry(QtCore.QRect(10, 520, 211, 16))
+        self.progressBar.setProperty("value", 24)
+        self.progressBar.setObjectName("progressBar")
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 807, 21))
+        self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
 
+        self.retranslateUi(MainWindow)
+        self.tabWidget.setCurrentIndex(0)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-CURRENT_DIRECTORY = Path(__file__).resolve().parent
-
-
-class webView(QWidget):
-    def __init__(self):
-        super(webView, self).__init__()
-        
-
-        filename = os.fspath(CURRENT_DIRECTORY / "index_py.html")
-        url = QUrl.fromLocalFile(filename)
-        
-        self.webV = QWebEngineView()
-        def test1(percent):
-            print(percent)
-        self.webV.loadProgress.connect(test1)
-        def test2(success):
-            print(success)
-        self.webV.loadFinished.connect(test2)
-        self.webV.load(url)
-
-        layout = QVBoxLayout(self)
-        layout.addWidget(self.webV)
-
-        print (self.size())
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.groupBox_4.setTitle(_translate("MainWindow", "GroupBox"))
+        self.label_4.setText(_translate("MainWindow", "TextLabel"))
+        self.label_6.setText(_translate("MainWindow", "TextLabel"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_1), _translate("MainWindow", "Tab 1"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
+        self.groupBox_5.setTitle(_translate("MainWindow", "GroupBox"))
+        self.groupBox.setTitle(_translate("MainWindow", "GroupBox"))
+        self.pushButton_2.setText(_translate("MainWindow", "PushButton"))
+        self.pushButton.setText(_translate("MainWindow", "PushButton"))
+        self.groupBox_2.setTitle(_translate("MainWindow", "GroupBox"))
+        self.groupBox_3.setTitle(_translate("MainWindow", "GroupBox"))
+        self.label.setText(_translate("MainWindow", "TextLabel"))
+        self.label_2.setText(_translate("MainWindow", "TextLabel"))
+        self.checkBox.setText(_translate("MainWindow", "CheckBox"))
+        self.checkBox_2.setText(_translate("MainWindow", "CheckBox"))
 
 if __name__ == "__main__":
-    app = QApplication([])
-
-    web = webView()
-    web.show()
-
-    sys.exit(app.exec())
+    import sys
+    import subprocess
+    import os
+    url = "http://127.0.0.42:8080/satvision"
+    subprocess.Popen("python -m http.server -b 127.0.0.42 8080")
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
+    print ("you just closed the pyqt window!!! you are awesome!!!")
+    os.killpg(os.getpgid(pro.pid), signal.SIGTERM)
+    
+#C:\Users\hugol\AppData\Roaming\Python\Python311\Scripts>pyuic5.exe -x C:\Users\hugol\Documents\JavaScript\satvision\ui\window.ui
