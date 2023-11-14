@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_1">
      <property name="enabled">
@@ -153,7 +153,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Update</string>
       </property>
      </widget>
      <widget class="QComboBox" name="comboBox">
@@ -176,7 +176,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="ss">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -186,7 +186,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Refresh</string>
       </property>
      </widget>
     </widget>
@@ -319,7 +319,7 @@
      <x>0</x>
      <y>0</y>
      <width>807</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

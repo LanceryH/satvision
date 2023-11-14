@@ -265,7 +265,7 @@ class Orbit {
 
   total() {
     this.create_date_data();
-    let nbOrbit = 3;
+    let nbOrbit = 1;
     this.MEAN_MOTION_SI = (2 * Math.PI) / this.PERIOD;
     this.SEMI_MAJOR_AXIS =
       Math.pow(this.MUE / this.MEAN_MOTION_SI ** 2, 1 / 3) * 1000;

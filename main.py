@@ -5,70 +5,65 @@ from PyQt5.QtWebEngineWidgets import QWebEngineView
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        #MainWindow.resize(800, 600)
-        width = 800
-        height = 590
-        # setting  the fixed size of window
-        MainWindow.setFixedSize(width, height)
+        MainWindow.resize(807, 607)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(250, 10, 541, 561))
+        self.tabWidget.setGeometry(QtCore.QRect(250, 10, 541, 551))
         self.tabWidget.setObjectName("tabWidget")
         self.tab_1 = QtWidgets.QWidget()
         self.tab_1.setEnabled(True)
         self.tab_1.setObjectName("tab_1")
         self.webviewframe = QWebEngineView(self.tab_1)
-        self.webviewframe.load(QUrl(url))
+        self.webviewframe.load(QUrl(url_1))
         self.webviewframe.setGeometry(QtCore.QRect(10, 10, 511, 411))
         self.webviewframe.setObjectName("webviewframe")
         self.groupBox_4 = QtWidgets.QGroupBox(self.tab_1)
         self.groupBox_4.setGeometry(QtCore.QRect(10, 430, 511, 91))
         self.groupBox_4.setObjectName("groupBox_4")
-        self.widget_2 = QtWidgets.QWidget(self.groupBox_4)
-        self.widget_2.setGeometry(QtCore.QRect(10, 20, 491, 61))
-        self.widget_2.setObjectName("widget_2")
-        self.label_4 = QtWidgets.QLabel(self.widget_2)
-        self.label_4.setGeometry(QtCore.QRect(20, 10, 91, 16))
-        self.label_4.setObjectName("label_4")
-        self.label_6 = QtWidgets.QLabel(self.widget_2)
-        self.label_6.setGeometry(QtCore.QRect(20, 30, 91, 16))
-        self.label_6.setObjectName("label_6")
+        #self.webviewframe_3 = QWebEngineView(self.groupBox_4)
+        #self.webviewframe_3.load(QUrl(url_3))
+        #self.webviewframe_3.setGeometry(QtCore.QRect(10, 20, 491, 61))
+        #self.webviewframe_3.setObjectName("webviewframe_3")
         self.tabWidget.addTab(self.tab_1, "")
         self.tab_2 = QtWidgets.QWidget()
-        self.tab_2.setEnabled(True)
         self.tab_2.setObjectName("tab_2")
-        self.widget_3 = QtWidgets.QWidget(self.tab_2)
-        self.widget_3.setGeometry(QtCore.QRect(10, 10, 511, 241))
-        self.widget_3.setObjectName("widget_3")
+        self.webviewframe_2 = QWebEngineView(self.tab_2)
+        self.webviewframe_2.load(QUrl(url_2))
+        self.webviewframe_2.setGeometry(QtCore.QRect(10, 10, 511, 241))
+        self.webviewframe_2.setObjectName("webviewframe_2")
         self.widget_4 = QtWidgets.QWidget(self.tab_2)
         self.widget_4.setGeometry(QtCore.QRect(10, 260, 511, 261))
         self.widget_4.setObjectName("widget_4")
         self.tabWidget.addTab(self.tab_2, "")
         self.groupBox_5 = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox_5.setGeometry(QtCore.QRect(10, 10, 231, 561))
+        self.groupBox_5.setGeometry(QtCore.QRect(10, 10, 231, 551))
         self.groupBox_5.setObjectName("groupBox_5")
         self.groupBox = QtWidgets.QGroupBox(self.groupBox_5)
         self.groupBox.setGeometry(QtCore.QRect(10, 20, 211, 81))
         self.groupBox.setObjectName("groupBox")
-        self.pushButton_2 = QtWidgets.QPushButton(self.groupBox)
-        self.pushButton_2.setGeometry(QtCore.QRect(10, 50, 75, 23))
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.comboBox = QtWidgets.QComboBox(self.groupBox)
-        self.comboBox.setGeometry(QtCore.QRect(100, 20, 101, 22))
-        self.comboBox.setObjectName("comboBox")
-        self.lineEdit = QtWidgets.QLineEdit(self.groupBox)
-        self.lineEdit.setGeometry(QtCore.QRect(100, 50, 101, 20))
-        self.lineEdit.setObjectName("lineEdit")
         self.pushButton = QtWidgets.QPushButton(self.groupBox)
         self.pushButton.setGeometry(QtCore.QRect(10, 20, 75, 23))
         self.pushButton.setObjectName("pushButton")
+        self.pushButton.clicked.connect(self.pushButton_func)
+        self.comboBox = QtWidgets.QComboBox(self.groupBox)
+        self.comboBox.setGeometry(QtCore.QRect(100, 20, 101, 22))
+        self.comboBox.setObjectName("comboBox")
+        self.comboBox.activated.connect(self.comboBox_func)
+        self.lineEdit = QtWidgets.QLineEdit(self.groupBox)
+        self.lineEdit.setGeometry(QtCore.QRect(100, 50, 101, 20))
+        self.lineEdit.setObjectName("lineEdit")
+        self.pushButton_2 = QtWidgets.QPushButton(self.groupBox)
+        self.pushButton_2.setGeometry(QtCore.QRect(10, 50, 75, 23))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton.clicked.connect(self.pushButton_2_func)
         self.groupBox_2 = QtWidgets.QGroupBox(self.groupBox_5)
         self.groupBox_2.setGeometry(QtCore.QRect(10, 110, 211, 211))
         self.groupBox_2.setObjectName("groupBox_2")
-        self.textBrowser = QtWidgets.QTextBrowser(self.groupBox_2)
-        self.textBrowser.setGeometry(QtCore.QRect(10, 30, 191, 171))
-        self.textBrowser.setObjectName("textBrowser")
+        self.webviewframe_4 = QWebEngineView(self.groupBox_2)
+        self.webviewframe_4.load(QUrl(url_3))
+        self.webviewframe_4.setGeometry(QtCore.QRect(10, 30, 191, 171))
+        self.webviewframe_4.setObjectName("webviewframe_3")
         self.groupBox_3 = QtWidgets.QGroupBox(self.groupBox_5)
         self.groupBox_3.setGeometry(QtCore.QRect(10, 330, 211, 171))
         self.groupBox_3.setObjectName("groupBox_3")
@@ -96,29 +91,57 @@ class Ui_MainWindow(object):
         self.progressBar.setObjectName("progressBar")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 807, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 807, 26))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
+        for index in list_sat_name:
+            self.comboBox.addItem(index)
+    
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
+        self.comboBox.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def comboBox_func(self): 
+        print(self.comboBox.currentText()) 
+        print(self.comboBox.currentIndex())
+        with open('satvision/param.json', 'w') as f:
+            json.dump([{"val":self.comboBox.currentIndex()}], f)
+
+    def pushButton_func(self): 
+        #
+        self.webviewframe.load(QUrl(url_1))
+        #self.webviewframe.reload() 
+        self.webviewframe_2.load(QUrl(url_2))
+        #self.webviewframe_2.reload() 
+        self.webviewframe_4.load(QUrl(url_3))
+
+    def pushButton_2_func(self): 
+        response = requests.get("https://celestrak.org/NORAD/elements/gp.php?GROUP=active&FORMAT=json")
+        data = response.text
+
+        if response.status_code == 200:
+            # Replace 'downloaded.csv' with the desired local file name
+            with open('satvision/data.json', 'w') as file:
+                file.write(data)
+            print("CSV file downloaded successfully")
+        else:
+            print("Failed to download CSV file")
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.groupBox_4.setTitle(_translate("MainWindow", "GroupBox"))
-        self.label_4.setText(_translate("MainWindow", "TextLabel"))
-        self.label_6.setText(_translate("MainWindow", "TextLabel"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_1), _translate("MainWindow", "Tab 1"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
         self.groupBox_5.setTitle(_translate("MainWindow", "GroupBox"))
         self.groupBox.setTitle(_translate("MainWindow", "GroupBox"))
-        self.pushButton_2.setText(_translate("MainWindow", "PushButton"))
-        self.pushButton.setText(_translate("MainWindow", "PushButton"))
+        self.pushButton.setText(_translate("MainWindow", "Refresh"))
+        self.pushButton_2.setText(_translate("MainWindow", "Update"))
         self.groupBox_2.setTitle(_translate("MainWindow", "GroupBox"))
         self.groupBox_3.setTitle(_translate("MainWindow", "GroupBox"))
         self.label.setText(_translate("MainWindow", "TextLabel"))
@@ -130,15 +153,31 @@ if __name__ == "__main__":
     import sys
     import subprocess
     import os
-    url = "http://127.0.0.42:8080/satvision"
-    subprocess.Popen("python -m http.server -b 127.0.0.42 8080")
+    import json
+    import requests
+
+    list_sat_name=[]
+
+    with open('satvision/param.json', 'w') as f:
+            json.dump([{"val":0}], f)
+
+    with open('satvision/data.json') as json_file:
+        data = json.load(json_file)
+    
+    for index in range(8000):
+        list_sat_name.append(data[index]["OBJECT_NAME"])
+
+    url_1 = "http://127.0.0.1:8081/satvision/js_1/"
+    url_2 = "http://127.0.0.1:8082/satvision/js_2/"
+    url_3 = "http://127.0.0.1:8083/satvision/js_3/"
+    subprocess.Popen("python -m http.server -b 127.0.0.1 8081", shell=True, stdout=subprocess.PIPE, stderr=None, close_fds=True)
+    subprocess.Popen("python -m http.server -b 127.0.0.1 8082", shell=True, stdout=subprocess.PIPE, stderr=None, close_fds=True)
+    subprocess.Popen("python -m http.server -b 127.0.0.1 8083", shell=True, stdout=subprocess.PIPE, stderr=None, close_fds=True)
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-    print ("you just closed the pyqt window!!! you are awesome!!!")
-    os.killpg(os.getpgid(pro.pid), signal.SIGTERM)
     
 #C:\Users\hugol\AppData\Roaming\Python\Python311\Scripts>pyuic5.exe -x C:\Users\hugol\Documents\JavaScript\satvision\ui\window.ui
