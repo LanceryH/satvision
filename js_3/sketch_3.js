@@ -2,6 +2,8 @@ let satellite_val = 0;
 let my_object;
 let data_sat;
 let val_py;
+let date_py;
+let live_statut;
 
 function preload() {
   data_sat = loadJSON("../data.json");
@@ -13,22 +15,34 @@ function setup() {
   canvas.position(0, 0);
   //resizeCanvas(windowWidth, windowHeight);
   val_py = data_py[0]["val"];
-  my_object = new Orbit(data_sat[val_py]);
+  date_py = data_py[0]["date"];
+  live_statut = data_py[0]["live"];
+  my_object = new Orbit(data_sat[val_py], date_py, live_statut);
   my_object.total();
 }
 
 function draw() {
-  my_object = new Orbit(data_sat[val_py]);
+  my_object = new Orbit(data_sat[val_py], date_py, live_statut);
   my_object.total();
 
   document.getElementById("param").innerHTML =
     "Period: " +
     round(my_object.PERIOD, 2) +
-    " min <br />Latitude: " +
+    " min " +
+    "<br />Latitude: " +
     round(my_object.lat[0], 2) +
-    "° <br />Longitude: " +
+    "° " +
+    "<br />Longitude: " +
     round(my_object.lon[0], 2) +
+    "° " +
     "<br />Inclination: " +
     round((my_object.INCLINATION * 180) / Math.PI, 2) +
-    " °";
+    " °" +
+    "<br />NORA ID: " +
+    my_object.NORA_ID +
+    "<br />GMST: " +
+    my_object.GMST +
+    "<br />Altitude: " +
+    round(my_object.alt[0], 2) +
+    " Km";
 }

@@ -2,6 +2,8 @@ let satellite_val = 0;
 let my_object;
 let data_sat;
 let val_py;
+let date_py;
+let live_statut;
 
 function preload() {
   data_sat = loadJSON("../data.json");
@@ -13,13 +15,15 @@ function setup() {
   createCanvas(501, 384, WEBGL);
   //resizeCanvas(windowWidth, windowHeight);
   val_py = data_py[0]["val"];
-  my_object = new Orbit(data_sat[val_py]);
+  date_py = data_py[0]["date"];
+  live_statut = data_py[0]["live"];
+  my_object = new Orbit(data_sat[val_py], date_py, live_statut);
   my_object.total();
   angleMode(DEGREES);
 }
 
 function draw() {
-  my_object = new Orbit(data_sat[val_py]);
+  my_object = new Orbit(data_sat[val_py], date_py, live_statut);
   my_object.total();
 
   clear();

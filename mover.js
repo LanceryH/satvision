@@ -1,5 +1,12 @@
 class Orbit {
-  constructor(data) {
+  constructor(data, date_py, live_statut) {
+    this.live_statut = live_statut;
+    this.date_py_YEAR = parseInt(date_py[0]);
+    this.date_py_MONTH = parseInt(date_py[1]);
+    this.date_py_DAY = parseInt(date_py[2]);
+    this.date_py_HOUR = parseInt(date_py[3]);
+    this.date_py_MINUTE = parseInt(date_py[4]);
+    this.date_py_SECOND = 0;
     this.MUE = 398600.441;
     this.EARTH_MASS = 5.972e24;
     this.G = 6.67384e-11;
@@ -271,7 +278,7 @@ class Orbit {
       Math.pow(this.MUE / this.MEAN_MOTION_SI ** 2, 1 / 3) * 1000;
 
     const nbIts = nbOrbit * this.PERIOD;
-    const nbPts = 1000;
+    const nbPts = 200;
     const T = this.create_arrange(0, parseInt(nbIts), parseInt(nbIts / nbPts));
 
     const d1 = new Date(
@@ -282,7 +289,20 @@ class Orbit {
       this.UPDATE_DATE_MINUTE,
       this.UPDATE_DATE_SECOND
     );
-    const d2 = new Date();
+    let d2 = 0;
+    if (this.live_statut == 0) {
+      d2 = new Date(
+        this.date_py_YEAR,
+        this.date_py_MONTH,
+        this.date_py_DAY,
+        this.date_py_HOUR,
+        this.date_py_MINUTE,
+        this.date_py_SECOND
+      );
+    }
+    if (this.live_statut == 2) {
+      d2 = new Date();
+    }
     this.EPOCH_NOW = d2;
     const dt = (d2 - d1) / 1000 - 3600; //FAUT METTRE LA CORRECTION DU GMT+00
 
