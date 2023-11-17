@@ -75,7 +75,7 @@ class Ui_MainWindow(object):
         self.dateTimeEdit_2 = QtWidgets.QDateTimeEdit(self.groupBox_3)
         self.dateTimeEdit_2.setGeometry(QtCore.QRect(10, 100, 194, 22))
         self.dateTimeEdit_2.setObjectName("dateTimeEdit_2")
-        dt2 = QtCore.QDateTime(int(data[0]["EPOCH"][0:4]), int(data[0]["EPOCH"][5:7]), int(data[0]["EPOCH"][8:10])+2, int(data[0]["EPOCH"][11:13]), int(data[0]["EPOCH"][14:16])) 
+        dt2 = QtCore.QDateTime(int(data[0]["EPOCH"][0:4]), int(data[0]["EPOCH"][5:7]), int(data[0]["EPOCH"][8:10]), int(data[0]["EPOCH"][11:13])+2, int(data[0]["EPOCH"][14:16])) 
         self.dateTimeEdit_2.setDateTime(dt2) 
         self.label = QtWidgets.QLabel(self.groupBox_3)
         self.label.setGeometry(QtCore.QRect(20, 80, 181, 16))
