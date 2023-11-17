@@ -43,7 +43,7 @@ function draw() {
 
   push();
   stroke(255, 0, 255);
-  strokeWeight(1);
+  strokeWeight(2);
   noFill();
   beginShape();
   for (let index = 0; index < my_object.R[0].length; index++) {
