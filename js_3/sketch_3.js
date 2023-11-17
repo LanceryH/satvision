@@ -4,6 +4,7 @@ let data_sat;
 let val_py;
 let date_py;
 let live_statut;
+let Dt_py;
 
 function preload() {
   data_sat = loadJSON("../data.json");
@@ -17,12 +18,13 @@ function setup() {
   val_py = data_py[0]["val"];
   date_py = data_py[0]["date"];
   live_statut = data_py[0]["live"];
-  my_object = new Orbit(data_sat[val_py], date_py, live_statut);
+  Dt_py = data_py[0]["Dt"];
+  my_object = new Orbit(data_sat[val_py], date_py, live_statut, Dt_py);
   my_object.total();
 }
 
 function draw() {
-  my_object = new Orbit(data_sat[val_py], date_py, live_statut);
+  my_object = new Orbit(data_sat[val_py], date_py, live_statut, Dt_py);
   my_object.total();
 
   document.getElementById("param").innerHTML =

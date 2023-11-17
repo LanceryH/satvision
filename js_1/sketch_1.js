@@ -4,6 +4,7 @@ let data_sat;
 let val_py;
 let date_py;
 let live_statut;
+let Dt_py;
 
 function preload() {
   data_sat = loadJSON("../data.json");
@@ -17,13 +18,14 @@ function setup() {
   val_py = data_py[0]["val"];
   date_py = data_py[0]["date"];
   live_statut = data_py[0]["live"];
-  my_object = new Orbit(data_sat[val_py], date_py, live_statut);
+  Dt_py = data_py[0]["Dt"];
+  my_object = new Orbit(data_sat[val_py], date_py, live_statut, Dt_py);
   my_object.total();
   angleMode(DEGREES);
 }
 
 function draw() {
-  my_object = new Orbit(data_sat[val_py], date_py, live_statut);
+  my_object = new Orbit(data_sat[val_py], date_py, live_statut, Dt_py);
   my_object.total();
 
   clear();
@@ -41,8 +43,9 @@ function draw() {
 
   push();
   stroke(255, 0, 255);
-  strokeWeight(3);
-  beginShape(POINTS);
+  strokeWeight(1);
+  noFill();
+  beginShape();
   for (let index = 0; index < my_object.R[0].length; index++) {
     vertex(
       (Math.cos((my_object.lat[index] * Math.PI) / 180) *
@@ -77,6 +80,27 @@ function draw() {
   );
   endShape();
   pop();
+
+  push();
+  stroke(0, 255, 255);
+  strokeWeight(10);
+  beginShape(POINTS);
+  const max_len = my_object.lat.length - 1;
+  vertex(
+    (Math.cos((my_object.lat[max_len] * Math.PI) / 180) *
+      Math.sin((my_object.lon[max_len] * Math.PI) / 180) *
+      my_object.alt[0]) /
+      1000,
+    (-Math.sin((my_object.lat[max_len] * Math.PI) / 180) * my_object.alt[0]) /
+      1000,
+    (Math.cos((my_object.lat[max_len] * Math.PI) / 180) *
+      Math.cos((my_object.lon[max_len] * Math.PI) / 180) *
+      my_object.alt[max_len]) /
+      1000
+  );
+  endShape();
+  pop();
+
   push();
   strokeWeight(3);
   stroke(0, 0, 255); //BLUE

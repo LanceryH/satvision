@@ -1,6 +1,13 @@
 class Orbit {
-  constructor(data, date_py, live_statut) {
+  constructor(data, date_py, live_statut, Dt_py) {
+    this.Dt_py = Dt_py;
     this.live_statut = live_statut;
+    this.Dt_py_YEAR = parseInt(Dt_py[0]);
+    this.Dt_py_MONTH = parseInt(Dt_py[1]);
+    this.Dt_py_DAY = parseInt(Dt_py[2]);
+    this.Dt_py_HOUR = parseInt(Dt_py[3]);
+    this.Dt_py_MINUTE = parseInt(Dt_py[4]);
+    this.Dt_py_SECOND = 0;
     this.date_py_YEAR = parseInt(date_py[0]);
     this.date_py_MONTH = parseInt(date_py[1]);
     this.date_py_DAY = parseInt(date_py[2]);
@@ -272,23 +279,7 @@ class Orbit {
 
   total() {
     this.create_date_data();
-    let nbOrbit = 1;
-    this.MEAN_MOTION_SI = (2 * Math.PI) / this.PERIOD;
-    this.SEMI_MAJOR_AXIS =
-      Math.pow(this.MUE / this.MEAN_MOTION_SI ** 2, 1 / 3) * 1000;
-
-    const nbIts = nbOrbit * this.PERIOD;
-    const nbPts = 200;
-    const T = this.create_arrange(0, parseInt(nbIts), parseInt(nbIts / nbPts));
-
-    const d1 = new Date(
-      this.UPDATE_DATE_YEAR,
-      this.UPDATE_DATE_MONTH - 1,
-      this.UPDATE_DATE_DAY,
-      this.UPDATE_DATE_HOUR,
-      this.UPDATE_DATE_MINUTE,
-      this.UPDATE_DATE_SECOND
-    );
+    let nbOrbit = 0;
     let d2 = 0;
     if (this.live_statut == 0) {
       d2 = new Date(
@@ -303,6 +294,36 @@ class Orbit {
     if (this.live_statut == 2) {
       d2 = new Date();
     }
+    const dt_python = new Date(
+      this.Dt_py_YEAR,
+      this.Dt_py_MONTH,
+      this.Dt_py_DAY,
+      this.Dt_py_HOUR,
+      this.Dt_py_MINUTE,
+      this.Dt_py_SECOND
+    );
+    const d1 = new Date(
+      this.UPDATE_DATE_YEAR,
+      this.UPDATE_DATE_MONTH - 1,
+      this.UPDATE_DATE_DAY,
+      this.UPDATE_DATE_HOUR,
+      this.UPDATE_DATE_MINUTE,
+      this.UPDATE_DATE_SECOND
+    );
+    console.log((dt_python - d2) / 1000 / this.PERIOD);
+    if (this.live_statut == 2) {
+      nbOrbit = 1;
+    }
+    if (this.live_statut == 0) {
+      nbOrbit = (dt_python - d2) / 1000 / this.PERIOD;
+    }
+    this.MEAN_MOTION_SI = (2 * Math.PI) / this.PERIOD;
+    this.SEMI_MAJOR_AXIS =
+      Math.pow(this.MUE / this.MEAN_MOTION_SI ** 2, 1 / 3) * 1000;
+
+    const nbIts = nbOrbit * this.PERIOD;
+    const nbPts = 200;
+    const T = this.create_arrange(0, parseInt(nbIts), parseInt(nbIts / nbPts));
     this.EPOCH_NOW = d2;
     const dt = (d2 - d1) / 1000 - 3600; //FAUT METTRE LA CORRECTION DU GMT+00
 

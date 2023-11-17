@@ -30,7 +30,7 @@ class Ui_MainWindow(object):
         self.tab_2.setObjectName("tab_2")
         self.webviewframe_2 = QWebEngineView(self.tab_2)
         self.webviewframe_2.load(QUrl(url_2))
-        self.webviewframe_2.setGeometry(QtCore.QRect(10, 10, 511, 241))
+        self.webviewframe_2.setGeometry(QtCore.QRect(10, 10, 511, 204))
         self.webviewframe_2.setObjectName("webviewframe_2")
         self.widget_4 = QtWidgets.QWidget(self.tab_2)
         self.widget_4.setGeometry(QtCore.QRect(10, 260, 511, 261))
@@ -132,7 +132,8 @@ class Ui_MainWindow(object):
         with open('satvision/param.json', 'w') as f:
             json.dump([{"val":self.comboBox.currentIndex(),
                         "date":str(self.dateTimeEdit.dateTime()).split("(")[1].split(")")[0].split(","),
-                        "live":self.checkBox.checkState()}], f)
+                        "live":self.checkBox.checkState(),
+                        "Dt":str(self.dateTimeEdit_2.dateTime()).split("(")[1].split(")")[0].split(",")}], f)
 
     def pushButton_func(self): 
         self.webviewframe.load(QUrl(url_1))
@@ -142,7 +143,11 @@ class Ui_MainWindow(object):
         self.webviewframe_4.load(QUrl(url_3))
 
     def pushButton_func_3(self): 
-        print("pressed")
+        with open('satvision/param.json', 'w') as f:
+            json.dump([{"val":self.comboBox.currentIndex(),
+                        "date":str(self.dateTimeEdit.dateTime()).split("(")[1].split(")")[0].split(","),
+                        "live":self.checkBox.checkState(),
+                        "Dt":str(self.dateTimeEdit_2.dateTime()).split("(")[1].split(")")[0].split(",")}], f)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -176,15 +181,16 @@ if __name__ == "__main__":
     with open('satvision/param.json', 'w') as f:
             json.dump([{"val":0,
                         "date":["0", " 0", " 0", " 0", " 0"],
-                        "live":2}], f)
+                        "live":2,
+                        "Dt":["0", " 0", " 0", " 0", " 0"]}], f)
             
     for index in range(8000):
         list_sat_name.append(data[index]["OBJECT_NAME"])
 
-    url_1 = "http://localhost:7111/satvision/js_1/index.html"
-    url_2 = "http://localhost:7111/satvision/js_2/index.html"
-    url_3 = "http://localhost:7111/satvision/js_3/index.html"
-    subprocess.Popen("python -m http.server 7111")
+    url_1 = "http://localhost:7221/satvision/js_1/index.html"
+    url_2 = "http://localhost:7221/satvision/js_2/index.html"
+    url_3 = "http://localhost:7221/satvision/js_3/index.html"
+    subprocess.Popen("python -m http.server 7221")
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
