@@ -1,3 +1,3 @@
 # satvision
 
-![image](https://github.com/LanceryH/satvision/assets/108919405/696ad89c-72b5-47dd-aca6-760adb9596cf)
+![image](https://github.com/LanceryH/satvision/assets/108919405/76b80b8f-283e-48d5-9c8e-abb51a1572ab)
