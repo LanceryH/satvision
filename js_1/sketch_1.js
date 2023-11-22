@@ -31,6 +31,8 @@ function draw() {
   clear();
   orbitControl(1, 1, 1);
   scale(0.02);
+  perspective(180 / 3.0, width / height, 0.1, 150000);
+  pointLight(255, 255, 255, 15000, 15000, 15000);
 
   push();
   fill(0, 100, 100);
@@ -101,10 +103,10 @@ function draw() {
   endShape();
   pop();
 
-  push();
-  strokeWeight(3);
-  stroke(0, 0, 255); //BLUE
-  line(0, 0, 0, 0, 10000, 0);
-  stroke(255, 0, 0); //RED
-  line(0, 0, 0, 0, -10000, 0);
+  //push();
+  //strokeWeight(3);
+  //stroke(0, 0, 255); //BLUE
+  //line(0, 0, 0, 0, 10000, 0);
+  //stroke(255, 0, 0); //RED
+  //line(0, 0, 0, 0, -10000, 0);
 }

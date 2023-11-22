@@ -310,7 +310,6 @@ class Orbit {
       this.UPDATE_DATE_MINUTE,
       this.UPDATE_DATE_SECOND
     );
-    console.log((dt_python - d2) / 1000 / this.PERIOD);
     if (this.live_statut == 2) {
       nbOrbit = 1;
     }

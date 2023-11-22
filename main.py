@@ -2,6 +2,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QUrl
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 
+data = {'col1':['1','2','3','4'],
+        'col2':['1','2','1','3'],
+        'col3':['1','1','2','1']}
+
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -15,27 +20,61 @@ class Ui_MainWindow(object):
         self.tab_1.setEnabled(True)
         self.tab_1.setObjectName("tab_1")
         self.webviewframe = QWebEngineView(self.tab_1)
-        self.webviewframe.load(QUrl(url_1))
+        self.webviewframe.setUrl(QUrl(url_1))
         self.webviewframe.setGeometry(QtCore.QRect(10, 10, 517, 404))
         self.webviewframe.setObjectName("webviewframe")
         self.groupBox_4 = QtWidgets.QGroupBox(self.tab_1)
         self.groupBox_4.setGeometry(QtCore.QRect(10, 430, 517, 91))
-        self.groupBox_4.setObjectName("groupBox_4")
-        #self.webviewframe_3 = QWebEngineView(self.groupBox_4)
-        #self.webviewframe_3.load(QUrl(url_3))
-        #self.webviewframe_3.setGeometry(QtCore.QRect(10, 20, 491, 61))
-        #self.webviewframe_3.setObjectName("webviewframe_3")
+        self.groupBox_4.setObjectName("groupBox_4") 
+        self.label_8 = QtWidgets.QLabel(self.groupBox_4)
+        self.label_8.setGeometry(QtCore.QRect(10, 20, 491, 31))
+        self.label_8.setObjectName("label_8")
+        self.label_9 = QtWidgets.QLabel(self.groupBox_4)
+        self.label_9.setGeometry(QtCore.QRect(10, 50, 491, 31))
+        self.label_9.setObjectName("label_9")
         self.tabWidget.addTab(self.tab_1, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
         self.webviewframe_2 = QWebEngineView(self.tab_2)
-        self.webviewframe_2.load(QUrl(url_2))
+        self.webviewframe_2.setUrl(QUrl(url_2))
         self.webviewframe_2.setGeometry(QtCore.QRect(10, 10, 511, 204))
         self.webviewframe_2.setObjectName("webviewframe_2")
         self.widget_4 = QtWidgets.QWidget(self.tab_2)
         self.widget_4.setGeometry(QtCore.QRect(10, 260, 511, 261))
         self.widget_4.setObjectName("widget_4")
         self.tabWidget.addTab(self.tab_2, "")
+        self.tab_3 = QtWidgets.QWidget()
+        self.tab_3.setObjectName("tab_3")
+        self.tabWidget.addTab(self.tab_3, "")
+        self.widget_5 = QtWidgets.QWidget(self.tab_3)
+        self.widget_5.setGeometry(QtCore.QRect(10, 260, 511, 261))
+        self.widget_5.setObjectName("widget_5")
+        self.groupBox_6 = QtWidgets.QGroupBox(self.tab_3)
+        self.groupBox_6.setGeometry(QtCore.QRect(10, 10, 511, 241))
+        self.groupBox_6.setObjectName("groupBox_6")
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.groupBox_6)
+        self.lineEdit_2.setGeometry(QtCore.QRect(100, 40, 71, 20))
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.label_3 = QtWidgets.QLabel(self.groupBox_6)
+        self.label_3.setGeometry(QtCore.QRect(10, 20, 71, 16))
+        self.label_3.setObjectName("label_3")
+        self.comboBox_2 = QtWidgets.QComboBox(self.groupBox_6)
+        self.comboBox_2.setGeometry(QtCore.QRect(10, 40, 73, 22))
+        self.comboBox_2.setObjectName("comboBox_2")
+        self.tableWidget = QtWidgets.QTableWidget(self.groupBox_6)
+        self.tableWidget.setGeometry(QtCore.QRect(10, 70, 251, 161))
+        self.tableWidget.setObjectName("tableWidget")
+        self.createTable()
+        self.label_5 = QtWidgets.QLabel(self.groupBox_6)
+        self.label_5.setGeometry(QtCore.QRect(100, 20, 111, 16))
+        self.label_5.setObjectName("label_5")
+        self.comboBox_3 = QtWidgets.QComboBox(self.groupBox_6)
+        self.comboBox_3.setGeometry(QtCore.QRect(190, 40, 73, 22))
+        self.comboBox_3.setObjectName("comboBox_3")
+        self.comboBox_3.addItems(["1","2","3"])
+        self.label_7 = QtWidgets.QLabel(self.groupBox_6)
+        self.label_7.setGeometry(QtCore.QRect(190, 20, 71, 16))
+        self.label_7.setObjectName("label_7")
         self.groupBox_5 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_5.setGeometry(QtCore.QRect(10, 10, 231, 551))
         self.groupBox_5.setObjectName("groupBox_5")
@@ -61,7 +100,7 @@ class Ui_MainWindow(object):
         self.groupBox_2.setGeometry(QtCore.QRect(10, 110, 211, 211))
         self.groupBox_2.setObjectName("groupBox_2")
         self.webviewframe_4 = QWebEngineView(self.groupBox_2)
-        self.webviewframe_4.load(QUrl(url_3))
+        self.webviewframe_4.setUrl(QUrl(url_3))
         self.webviewframe_4.setGeometry(QtCore.QRect(10, 30, 191, 171))
         self.webviewframe_4.setObjectName("webviewframe_3")
         self.groupBox_3 = QtWidgets.QGroupBox(self.groupBox_5)
@@ -122,6 +161,8 @@ class Ui_MainWindow(object):
             with open('satvision/data.json', 'w') as file:
                 file.write(data)
             print("Done")
+            with open('satvision/code_saved.json', 'w') as f:
+                json.dump([{ "Update_date": str(date.today()) }], f)
         else:
             print("Error")
 
@@ -155,23 +196,54 @@ class Ui_MainWindow(object):
         self.groupBox_4.setTitle(_translate("MainWindow", "GroupBox"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_1), _translate("MainWindow", "3D"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "2D"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Mission"))
         self.groupBox_5.setTitle(_translate("MainWindow", "Parameters"))
         self.groupBox.setTitle(_translate("MainWindow", "Satellite"))
         self.pushButton.setText(_translate("MainWindow", "Refresh"))
         self.pushButton_2.setText(_translate("MainWindow", "Update"))
         self.groupBox_2.setTitle(_translate("MainWindow", "Live data"))
         self.groupBox_3.setTitle(_translate("MainWindow", "Time set"))
-        self.label.setText(_translate("MainWindow", "End Time"))
-        self.label_2.setText(_translate("MainWindow", "Start Time"))
-        self.checkBox.setText(_translate("MainWindow", "Live Time"))
+        self.label.setText(_translate("MainWindow", "End Time 🔵"))
+        self.label_2.setText(_translate("MainWindow", "Start Time 🟢"))
+        self.checkBox.setText(_translate("MainWindow", "Live Time "))
         self.pushButton_3.setText(_translate("MainWindow", "Validate"))
+        with open('satvision/code_saved.json') as json_file:
+            update_date = json.load(json_file)
+        self.label_8.setText(_translate("MainWindow", f"Last update: {update_date[0]['Update_date']}"))
+        self.label_9.setText(_translate("MainWindow", "Help: We are in Live"))
+        self.groupBox_6.setTitle(_translate("MainWindow", "Launch parameters"))
+        self.label_3.setText(_translate("MainWindow", "Launch site"))
+        self.label_5.setText(_translate("MainWindow", "Orbit Inclination"))
+        self.label_7.setText(_translate("MainWindow", "Stages"))
 
+    def createTable(self):   
+        #Row count 
+        self.tableWidget.setRowCount(4)  
+  
+        #Column count 
+        self.tableWidget.setColumnCount(2)   
+  
+        self.tableWidget.setItem(0,0, QtWidgets.QTableWidgetItem("Name")) 
+        self.tableWidget.setItem(0,1, QtWidgets.QTableWidgetItem("City")) 
+        self.tableWidget.setItem(1,0, QtWidgets.QTableWidgetItem("Aloysius")) 
+        self.tableWidget.setItem(1,1, QtWidgets.QTableWidgetItem("Indore")) 
+        self.tableWidget.setItem(2,0, QtWidgets.QTableWidgetItem("Alan")) 
+        self.tableWidget.setItem(2,1, QtWidgets.QTableWidgetItem("Bhopal")) 
+        self.tableWidget.setItem(3,0, QtWidgets.QTableWidgetItem("Arnavi")) 
+        self.tableWidget.setItem(3,1, QtWidgets.QTableWidgetItem("Mandsaur")) 
+   
+        #Table will fit the screen horizontally 
+        self.tableWidget.resizeColumnsToContents()
+        self.tableWidget.resizeRowsToContents()
+        #self.tableWidget.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch) 
+        
 if __name__ == "__main__":
     import sys
     import subprocess
     import os
     import json
     import requests
+    from datetime import date
 
     list_sat_name=[]
 
@@ -184,13 +256,13 @@ if __name__ == "__main__":
                         "live":2,
                         "Dt":["0", " 0", " 0", " 0", " 0"]}], f)
             
-    for index in range(8000):
+    for index in range(80):
         list_sat_name.append(data[index]["OBJECT_NAME"])
 
-    url_1 = "http://localhost:7221/satvision/js_1/index.html"
-    url_2 = "http://localhost:7221/satvision/js_2/index.html"
-    url_3 = "http://localhost:7221/satvision/js_3/index.html"
-    subprocess.Popen("python -m http.server 7221")
+    url_1 = "http://localhost:8000/satvision/js_1/index.html"
+    url_2 = "http://localhost:8000/satvision/js_2/index.html"
+    url_3 = "http://localhost:8000/satvision/js_3/index.html"
+    subprocess.Popen("python -m http.server 8000")
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
