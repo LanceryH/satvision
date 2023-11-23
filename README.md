@@ -5,7 +5,7 @@ Satvision is a project made with python and javascript based on a MVC model.
 
 The main objectif is allowing general public to see in live satellite position:
   - 3D position
-  - Groundtrack of any public satellite.
+  - Groundtrack
 
 ## Requirements
 ```bash
