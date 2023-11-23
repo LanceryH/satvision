@@ -153,8 +153,17 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def pushButton_func_2(self): 
+        response_map = requests.get("https://clouds.matteason.co.uk/images/8192x4096/earth.jpg", stream = True)
         response = requests.get("https://celestrak.org/NORAD/elements/gp.php?GROUP=active&FORMAT=json")
         data = response.text
+
+        if response.status_code == 200:
+            # Replace 'downloaded.csv' with the desired local file name
+            with open('satvision/map_earth.jpg','wb') as f:
+                shutil.copyfileobj(response_map.raw, f)
+            print("Done")
+        else:
+            print("Error")
 
         if response.status_code == 200:
             # Replace 'downloaded.csv' with the desired local file name
@@ -238,6 +247,7 @@ class Ui_MainWindow(object):
         #self.tableWidget.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch) 
         
 if __name__ == "__main__":
+    import shutil
     import sys
     import subprocess
     import os
@@ -259,10 +269,10 @@ if __name__ == "__main__":
     for index in range(80):
         list_sat_name.append(data[index]["OBJECT_NAME"])
 
-    url_1 = "http://localhost:8000/satvision/js_1/index.html"
-    url_2 = "http://localhost:8000/satvision/js_2/index.html"
-    url_3 = "http://localhost:8000/satvision/js_3/index.html"
-    subprocess.Popen("python -m http.server 8000")
+    url_1 = "http://localhost:8201/satvision/js_1/index.html"
+    url_2 = "http://localhost:8201/satvision/js_2/index.html"
+    url_3 = "http://localhost:8201/satvision/js_3/index.html"
+    subprocess.Popen("python -m http.server 8201")
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()

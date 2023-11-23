@@ -9,7 +9,7 @@ let Dt_py;
 function preload() {
   data_sat = loadJSON("../data.json");
   data_py = loadJSON("../param.json");
-  img = loadImage("map_earth.jpg");
+  img = loadImage("../map_earth_nocloud.jpg");
 }
 
 function setup() {
