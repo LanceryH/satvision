@@ -269,10 +269,10 @@ if __name__ == "__main__":
     for index in range(80):
         list_sat_name.append(data[index]["OBJECT_NAME"])
 
-    url_1 = "http://localhost:8201/satvision/js_1/index.html"
-    url_2 = "http://localhost:8201/satvision/js_2/index.html"
-    url_3 = "http://localhost:8201/satvision/js_3/index.html"
-    subprocess.Popen("python -m http.server 8201")
+    url_1 = "http://localhost:8202/satvision/js_1/index.html"
+    url_2 = "http://localhost:8202/satvision/js_2/index.html"
+    url_3 = "http://localhost:8202/satvision/js_3/index.html"
+    subprocess.Popen("python -m http.server 8202")
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
