@@ -26,7 +26,7 @@ function setup() {
 }
 
 function draw() {
-  background(255);
+  background(240, 240, 240);
   my_object = new Orbit(data_sat[val_py], date_py, live_statut, Dt_py);
   my_object.total();
 
