@@ -1,1 +1,2 @@
-https://clouds.matteason.co.uk
+0, 71, 16))
+        self.label_7.setObjectName("label_7")

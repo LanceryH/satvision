@@ -34,7 +34,7 @@ function draw() {
   scale(1.0);
 
   push();
-  stroke(255, 255, 255);
+  stroke(240, 240, 240);
   texture(img);
   rect(-180, -90, 360, 180);
   pop();

@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QUrl
 from PyQt5.QtWebEngineWidgets import QWebEngineView
+from js_3 import mission
 
 data = {'col1':['1','2','3','4'],
         'col2':['1','2','1','3'],
@@ -35,9 +36,12 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.tab_1, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
-        self.webviewframe_2 = QWebEngineView(self.tab_2)
+        self.groupBox_7 = QtWidgets.QGroupBox(self.tab_2)
+        self.groupBox_7.setGeometry(QtCore.QRect(10, 10, 516, 208))
+        self.groupBox_7.setObjectName("groupBox_4") 
+        self.webviewframe_2 = QWebEngineView(self.groupBox_7)
         self.webviewframe_2.setUrl(QUrl(url_2))
-        self.webviewframe_2.setGeometry(QtCore.QRect(10, 10, 511, 204))
+        self.webviewframe_2.setGeometry(QtCore.QRect(1, 1, 511, 204))
         self.webviewframe_2.setObjectName("webviewframe_2")
         self.widget_4 = QtWidgets.QWidget(self.tab_2)
         self.widget_4.setGeometry(QtCore.QRect(10, 260, 511, 261))
@@ -61,6 +65,7 @@ class Ui_MainWindow(object):
         self.comboBox_2 = QtWidgets.QComboBox(self.groupBox_6)
         self.comboBox_2.setGeometry(QtCore.QRect(10, 40, 73, 22))
         self.comboBox_2.setObjectName("comboBox_2")
+        self.comboBox_2.addItems(["SaxaVord","Baikonour","Kourou","Cap Canaveral"])
         self.tableWidget = QtWidgets.QTableWidget(self.groupBox_6)
         self.tableWidget.setGeometry(QtCore.QRect(10, 70, 251, 161))
         self.tableWidget.setObjectName("tableWidget")
