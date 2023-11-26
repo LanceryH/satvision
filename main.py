@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QUrl
 from PyQt5.QtWebEngineWidgets import QWebEngineView
-from js_3 import mission
+from lib_py import mission
 
 data = {'col1':['1','2','3','4'],
         'col2':['1','2','1','3'],
@@ -66,10 +66,7 @@ class Ui_MainWindow(object):
         self.comboBox_2.setGeometry(QtCore.QRect(10, 40, 73, 22))
         self.comboBox_2.setObjectName("comboBox_2")
         self.comboBox_2.addItems(["SaxaVord","Baikonour","Kourou","Cap Canaveral"])
-        self.tableWidget = QtWidgets.QTableWidget(self.groupBox_6)
-        self.tableWidget.setGeometry(QtCore.QRect(10, 70, 251, 161))
-        self.tableWidget.setObjectName("tableWidget")
-        self.createTable()
+
         self.label_5 = QtWidgets.QLabel(self.groupBox_6)
         self.label_5.setGeometry(QtCore.QRect(100, 20, 111, 16))
         self.label_5.setObjectName("label_5")
@@ -230,27 +227,6 @@ class Ui_MainWindow(object):
         self.label_5.setText(_translate("MainWindow", "Orbit Inclination"))
         self.label_7.setText(_translate("MainWindow", "Stages"))
 
-    def createTable(self):   
-        #Row count 
-        self.tableWidget.setRowCount(4)  
-  
-        #Column count 
-        self.tableWidget.setColumnCount(2)   
-  
-        self.tableWidget.setItem(0,0, QtWidgets.QTableWidgetItem("Name")) 
-        self.tableWidget.setItem(0,1, QtWidgets.QTableWidgetItem("City")) 
-        self.tableWidget.setItem(1,0, QtWidgets.QTableWidgetItem("Aloysius")) 
-        self.tableWidget.setItem(1,1, QtWidgets.QTableWidgetItem("Indore")) 
-        self.tableWidget.setItem(2,0, QtWidgets.QTableWidgetItem("Alan")) 
-        self.tableWidget.setItem(2,1, QtWidgets.QTableWidgetItem("Bhopal")) 
-        self.tableWidget.setItem(3,0, QtWidgets.QTableWidgetItem("Arnavi")) 
-        self.tableWidget.setItem(3,1, QtWidgets.QTableWidgetItem("Mandsaur")) 
-   
-        #Table will fit the screen horizontally 
-        self.tableWidget.resizeColumnsToContents()
-        self.tableWidget.resizeRowsToContents()
-        #self.tableWidget.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch) 
-        
 if __name__ == "__main__":
     import shutil
     import sys

@@ -1,5 +1,5 @@
 import numpy as np
-from js_3 import parameters as p
+from lib_py import parameters as p
  
 class Mission_class:
     def __init__(self,
