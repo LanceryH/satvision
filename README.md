@@ -15,8 +15,7 @@ pip install PyQtWebEngine
 ```
 
 ## Algorithms
-[a relative link](mover.js)
-
+[calculation class](mover.js)
 
 ## Preview
 ![image](https://github.com/LanceryH/satvision/assets/108919405/3aa9cdef-7ff2-453a-9625-1a2bd77b616a)
