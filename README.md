@@ -16,7 +16,7 @@ live orbit propagator and more
 </div>
 
 ## Summary
-Satvision is a project made with python and javascript based on a MVC model.
+Satvision is a project made with python (Model/Control) and javascript (View)
 
 The main objectifs:
 - [x] 3D position
@@ -24,8 +24,11 @@ The main objectifs:
 - [ ] Stages mass optimizer
 - [ ] Nozle optimizer
 
+> [!NOTE]
+> Stages mass optimizer is in progress
+
 ## Requirements
-```bash
+```
 pip install numpy
 pip install PyQt5
 pip install PyQtWebEngine
