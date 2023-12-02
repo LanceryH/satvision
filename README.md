@@ -15,10 +15,6 @@ live orbit propagator and more
 
 </div>
 
-## Authors
-[Hugo Lancery](https://github.com/LanceryH)
-[Vincent Laduguie](https://github.com/VincentLdg)
-
 ## Summary
 Satvision is a project made with python (Model/Control) and javascript (View)
 
@@ -47,3 +43,9 @@ pip install PyQtWebEngine
 ![image](https://github.com/LanceryH/satvision/assets/108919405/3436936a-3630-43a7-8328-d59f7238d1f8)
 
 ![image](https://github.com/LanceryH/satvision/assets/108919405/f750827a-22b7-47a3-b570-b59cb7637c48)
+
+## Authors
+
+- [Hugo Lancery](https://github.com/LanceryH)
+
+- [Vincent Laduguie](https://github.com/VincentLdg)
