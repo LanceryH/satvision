@@ -1,27 +1,29 @@
 <div align="center">
 <pre>
- ██████╗ ██╗   ██╗ █████╗ ███████╗███████╗ ██████╗ 
-██╔═══██╗██║   ██║██╔══██╗██╔════╝██╔════╝██╔═══██╗
-██║   ██║██║   ██║███████║█████╗  ███████╗██║   ██║
-██║▄▄ ██║██║   ██║██╔══██║██╔══╝  ╚════██║██║   ██║
-╚██████╔╝╚██████╔╝██║  ██║███████╗███████║╚██████╔╝
- ╚══▀▀═╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ 
+
+ ██████╗ █████╗  ████████╗██╗   ██╗██╗ ██████╗██╗ █████╗ ███╗  ██╗
+██╔════╝██╔══██╗╚══██╔══╝██║░░░██║██║██╔════╝██║██╔══██╗████╗░██║
+╚█████╗░███████║░░░██║░░░╚██╗░██╔╝██║╚█████╗░██║██║░░██║██╔██╗██║
+░╚═══██╗██╔══██║░░░██║░░░░╚████╔╝░██║░╚═══██╗██║██║░░██║██║╚████║
+██████╔╝██║░░██║░░░██║░░░░░╚██╔╝░░██║██████╔╝██║╚█████╔╝██║░╚███║
+╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░░░░╚═╝░░░╚═╝╚═════╝░╚═╝░╚════╝░╚═╝░░╚══╝
 ---------------------------------------------------
-python cli program to send requests
+live orbit propagator and more
 </pre>
 
 [![PyPI](https://img.shields.io/pypi/v/quaeso.svg)](https://github.com/LanceryH/satvision)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 </div>
-# satvision
 
 ## Summary
 Satvision is a project made with python and javascript based on a MVC model.
 
-The main objectif is allowing general public to see in live satellite position:
-  - 3D position
-  - Groundtrack
+The main objectifs:
+- [x] 3D position
+- [x] Groundtrack
+- [ ] Stages mass optimizer
+- [ ] Nozle optimizer
 
 ## Requirements
 ```bash
