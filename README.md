@@ -20,10 +20,10 @@ The main objectifs:
 - [x] 3D position
 - [x] Groundtrack
 - [ ] Stages mass optimizer
-- [ ] Nozle optimizer
+- [ ] Nozzle optimizer
 
 > [!NOTE]
-> Stages mass optimizer is in progress
+> Stages mass and nozzle optimizer is in progress
 
 ## Requirements
 ```
@@ -42,8 +42,12 @@ pip install PyQtWebEngine
 
 <img src="https://github.com/LanceryH/satvision/assets/108919405/ac12d31d-f400-4326-841c-64a7756e12b8" alt="drawing" width="70%" height="70%"/>
 
-## Authors
+## Author
 
 - [Hugo Lancery](https://github.com/LanceryH)
+  
+## Contributors
 
 - [Vincent Laduguie](https://github.com/VincentLdg)
+- Vincent Robert
+- [Josselin Desmars](http://josselin.desmars.free.fr/work/)
