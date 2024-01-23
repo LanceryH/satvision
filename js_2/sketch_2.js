@@ -16,18 +16,16 @@ function setup() {
   createCanvas(501, 184, WEBGL);
   background(255);
   //resizeCanvas(windowWidth, windowHeight);
-  val_py = data_py[0]["val"];
-  date_py = data_py[0]["date"];
-  live_statut = data_py[0]["live"];
-  Dt_py = data_py[0]["Dt"];
+  val_py = data_py["val"];
+  date_py = data_py["date"];
+  live_statut = data_py["live"];
+  Dt_py = data_py["Dt"];
   my_object = new Orbit(data_sat[val_py], date_py, live_statut, Dt_py);
-  my_object.total();
   angleMode(DEGREES);
 }
 
 function draw() {
   background(249, 249, 249);
-  my_object = new Orbit(data_sat[val_py], date_py, live_statut, Dt_py);
   my_object.total();
 
   orbitControl(0, 0, 1);
