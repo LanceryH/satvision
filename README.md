@@ -33,7 +33,7 @@ pip install PyQtWebEngine
 ```
 
 ## Algorithms
-[calculation class](mover.js)
+[calculation class](https://github.com/LanceryH/satvision/blob/main/sketchs/libraries/mover.js)
 
 ## Preview
 <img src="https://github.com/LanceryH/satvision/assets/108919405/6157aca0-8262-4c38-bfec-03f674581239" alt="drawing" width="70%" height="70%"/>
