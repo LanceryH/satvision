@@ -1,5 +1,0 @@
-PORT = "2440"
-URL_0D = "http://127.0.0.1:"+PORT+"/satvision1.0/js_3"
-URL_3D = "http://127.0.0.1:"+PORT+"/satvision1.0/js_1"
-URL_2D = "http://127.0.0.1:"+PORT+"/satvision1.0/js_2"
-URL_CELESTRAK = "https://celestrak.org/NORAD/elements/gp.php?GROUP=active&FORMAT=json"
