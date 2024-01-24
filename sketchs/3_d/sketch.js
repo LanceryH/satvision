@@ -21,6 +21,7 @@ function setup() {
   date_py = data_py[0]["date"];
   live_statut = data_py[0]["live"];
   Dt_py = data_py[0]["Dt"];
+  color = data_py[0]["color"];
   for (let index = 0; index < data_py[0]["val"].length; index++) {
     my_object = new Orbit(data_sat[val_py[index]], date_py, live_statut, Dt_py);
     my_object.total();
@@ -68,7 +69,7 @@ function draw() {
     my_object.total();
 
     push();
-    stroke(255, 0, 255);
+    stroke(color[0], color[1], color[2]);
     strokeWeight(2);
     noFill();
     beginShape();

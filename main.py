@@ -5,9 +5,11 @@ import json
 import os
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTreeWidgetItem
 from PyQt5.QtCore import QUrl, QRect, QDateTime
+from PyQt5.QtGui import QColor
 from PyQt5.uic import loadUi
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from source import parameters as params
+from random import randint
 
 class MyQtApp(QMainWindow):
     def __init__(self):
@@ -35,11 +37,12 @@ class MyQtApp(QMainWindow):
         dt2 = QDateTime(int(data[0]["EPOCH"][0:4]), int(data[0]["EPOCH"][5:7]), int(data[0]["EPOCH"][8:10]), int(data[0]["EPOCH"][11:13])+2, int(data[0]["EPOCH"][14:16])) 
         self.dateTimeEdit.setDateTime(dt) 
         self.dateTimeEdit_2.setDateTime(dt2) 
+        self.count = 0
+        self.color = []
 
         self.treeWidget.setAlternatingRowColors(True)
-        self.treeWidget.header().setVisible(False)
-        self.parent_tree = QTreeWidgetItem(self.treeWidget,["Scenario"])
-
+        #self.treeWidget.header().setVisible(False)
+        self.parent_list=[]
         self.show()
 
     def actionUpdate_func(self):
@@ -61,20 +64,22 @@ class MyQtApp(QMainWindow):
     def actionValidate_func(self):
         try:
             list_of_obj = []
-            for i in range(self.parent_tree.childCount()):
-                list_of_obj.append(str(self.parent_tree.child(i).text(1)))
+            for i in range(self.count):
+                list_of_obj.append(str(self.parent_list[i][0].child(0).text(0)))
             if self.radioButton.isChecked()==True:
                 with open(dir_path + '\\jsons\\param.json', 'w') as f:
                     json.dump([{"val":list_of_obj,
                                 "date":str(self.dateTimeEdit.dateTime()).split("(")[1].split(")")[0].split(","),
                                 "live":2,
-                                "Dt":str(self.dateTimeEdit_2.dateTime()).split("(")[1].split(")")[0].split(",")}], f) 
+                                "Dt":str(self.dateTimeEdit_2.dateTime()).split("(")[1].split(")")[0].split(","),
+                                "color": self.color}], f) 
             else:   
                 with open(dir_path + '\\jsons\\param.json', 'w') as f:
                     json.dump([{"val":list_of_obj,
                                 "date":str(self.dateTimeEdit.dateTime()).split("(")[1].split(")")[0].split(","),
                                 "live":0,
-                                "Dt":str(self.dateTimeEdit_2.dateTime()).split("(")[1].split(")")[0].split(",")}], f) 
+                                "Dt":str(self.dateTimeEdit_2.dateTime()).split("(")[1].split(")")[0].split(","),
+                                "color": self.color}], f) 
             print("wrote")
         except:
             pass
@@ -102,14 +107,44 @@ class MyQtApp(QMainWindow):
     
     def pushButton_func(self):
         print("+")
-        self.parent_tree.addChild(QTreeWidgetItem([str(self.comboBox_2.currentText()),str(self.comboBox_2.currentIndex())]))
-        print(self.parent_tree.child(0).text(1))
+        self.count = self.count + 1
+
+        self.parent_tree = QTreeWidgetItem(self.treeWidget,[str(self.comboBox_2.currentText())])
+        self.parent_tree.addChild(QTreeWidgetItem([str(self.comboBox_2.currentIndex())]))
+
+        self.color.append([randint(0, 255), randint(0, 255), randint(0, 255)]) #faut mettre ca en dict et relier la couleur au child
+
+        self.parent_tree.setForeground(0, QColor(self.color[0], self.color[1], self.color[2]))
+
+        self.child_tree = QTreeWidgetItem(["OBJECT_ID"])
+        self.parent_tree.addChild(self.child_tree)
+        self.child_tree.addChild(QTreeWidgetItem([str(data[int(self.comboBox_2.currentIndex())]["OBJECT_ID"])]))
+
+        self.child_tree = QTreeWidgetItem(["ECCENTRICITY"])
+        self.parent_tree.addChild(self.child_tree)
+        self.child_tree.addChild(QTreeWidgetItem([str(data[int(self.comboBox_2.currentIndex())]["ECCENTRICITY"])]))
+
+        self.child_tree = QTreeWidgetItem(["INCLINATION"])
+        self.parent_tree.addChild(self.child_tree)
+        self.child_tree.addChild(QTreeWidgetItem([str(data[int(self.comboBox_2.currentIndex())]["INCLINATION"])]))
+
+        self.child_tree = QTreeWidgetItem(["ARG_OF_PERICENTER"])
+        self.parent_tree.addChild(self.child_tree)
+        self.child_tree.addChild(QTreeWidgetItem([str(data[int(self.comboBox_2.currentIndex())]["ARG_OF_PERICENTER"])]))
+
+        self.child_tree = QTreeWidgetItem(["MEAN_ANOMALY"])
+        self.parent_tree.addChild(self.child_tree)
+        self.child_tree.addChild(QTreeWidgetItem([str(data[int(self.comboBox_2.currentIndex())]["MEAN_ANOMALY"])]))
+
+        self.parent_list.append([self.parent_tree])
+
         return
     
     def pushButton_2_func(self):
         print("-")
+        self.count = self.count - 1
         selected_items = self.treeWidget.selectedItems()
-
+        self.parent_list.remove(selected_items)
         if selected_items:
             item_to_remove = selected_items[0]
             parent_item = item_to_remove.parent()
@@ -130,7 +165,8 @@ if __name__ == '__main__':
             json.dump([{"val":[0],
                         "date":["0", " 0", " 0", " 0", " 0"],
                         "live":2,
-                        "Dt":["0", " 0", " 0", " 0", " 0"]}], f)
+                        "Dt":["0", " 0", " 0", " 0", " 0"],
+                        "color": [0, 0, 255]}], f)
             
     with open(dir_path + '\\jsons\\data.json', 'r') as file:
         data = json.load(file)  
