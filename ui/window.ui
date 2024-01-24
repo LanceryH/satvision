@@ -296,9 +296,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>390</y>
+        <y>350</y>
         <width>581</width>
-        <height>111</height>
+        <height>151</height>
        </rect>
       </property>
      </widget>
@@ -308,7 +308,7 @@
         <x>10</x>
         <y>10</y>
         <width>581</width>
-        <height>321</height>
+        <height>331</height>
        </rect>
       </property>
       <property name="title">
@@ -318,16 +318,11 @@
        <property name="geometry">
         <rect>
          <x>210</x>
-         <y>160</y>
+         <y>170</y>
          <width>191</width>
          <height>151</height>
         </rect>
        </property>
-       <column>
-        <property name="text">
-         <string notr="true">1</string>
-        </property>
-       </column>
       </widget>
       <widget class="QGroupBox" name="groupBox_5">
        <property name="geometry">
@@ -454,9 +449,9 @@
        <property name="geometry">
         <rect>
          <x>410</x>
-         <y>180</y>
+         <y>160</y>
          <width>161</width>
-         <height>131</height>
+         <height>161</height>
         </rect>
        </property>
        <property name="title">
@@ -472,7 +467,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>Check</string>
         </property>
        </widget>
        <widget class="QPushButton" name="pushButton_6">
@@ -485,7 +480,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>Apply</string>
         </property>
        </widget>
        <widget class="Line" name="line_2">
@@ -525,6 +520,42 @@
         </property>
         <property name="text">
          <string>🟢</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_4">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>130</y>
+          <width>21</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>6</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>+</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>130</y>
+          <width>21</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>6</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>-</string>
         </property>
        </widget>
       </widget>
@@ -655,7 +686,7 @@
          <x>410</x>
          <y>20</y>
          <width>161</width>
-         <height>161</height>
+         <height>131</height>
         </rect>
        </property>
        <property name="title">
@@ -707,48 +738,12 @@
          <string>Choice</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_3">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>120</y>
-          <width>21</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>6</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>-</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_4">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>120</y>
-          <width>21</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>6</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>+</string>
-        </property>
-       </widget>
       </widget>
       <widget class="QGroupBox" name="groupBox_9">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>150</y>
+         <y>160</y>
          <width>191</width>
          <height>161</height>
         </rect>

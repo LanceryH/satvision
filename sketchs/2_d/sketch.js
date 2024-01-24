@@ -59,7 +59,7 @@ function draw() {
     pop();
 
     push();
-    stroke(0, 255, 0);
+    stroke(0, 210, 106);
     strokeWeight(10);
     beginShape(POINTS);
     vertex(my_object.lon[0], -my_object.lat[0]);
@@ -68,7 +68,7 @@ function draw() {
 
     push();
     const max_len = my_object.lat.length - 1;
-    stroke(0, 255, 255);
+    stroke(0, 116, 186);
     strokeWeight(10);
     beginShape(POINTS);
     vertex(my_object.lon[max_len], -my_object.lat[max_len]);

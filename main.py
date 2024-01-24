@@ -33,6 +33,9 @@ class MyQtApp(QMainWindow):
         self.comboBox.currentIndexChanged.connect(self.comboBox_func) 
         self.comboBox.addItems(["Satellite","Launcher"])  
         self.comboBox_2.currentIndexChanged.connect(self.comboBox_2_func) 
+        self.comboBox_5.addItems(["Monopropellants","Mixpropellants"]) 
+        self.comboBox_5.currentIndexChanged.connect(self.comboBox_5_func) 
+        self.comboBox_6.addItems(["H202","N2H4","N20","Solid"])  
         dt = QDateTime(int(data[0]["EPOCH"][0:4]), int(data[0]["EPOCH"][5:7]), int(data[0]["EPOCH"][8:10]), int(data[0]["EPOCH"][11:13]), int(data[0]["EPOCH"][14:16])) 
         dt2 = QDateTime(int(data[0]["EPOCH"][0:4]), int(data[0]["EPOCH"][5:7]), int(data[0]["EPOCH"][8:10]), int(data[0]["EPOCH"][11:13])+2, int(data[0]["EPOCH"][14:16])) 
         self.dateTimeEdit.setDateTime(dt) 
@@ -103,11 +106,20 @@ class MyQtApp(QMainWindow):
         else:
             self.comboBox_2.clear()
             self.comboBox_2.addItems(["SaxaVord","Baikonour","Kourou","Cap_Canaveral"])  
-            return
+        return
 
     def comboBox_2_func(self):
         return
     
+    def comboBox_5_func(self):
+        if self.comboBox_5.currentText()=="Mixpropellants":
+            self.comboBox_6.clear()
+            self.comboBox_6.addItems(["LOX/Kérosène","LOX/LCH4","LOX/LH2"])  
+        else:
+            self.comboBox_6.clear()
+            self.comboBox_6.addItems(["H202","N2H4","N20","Solid"])  
+        return
+
     def pushButton_func(self):
         print("+")
         color = {}

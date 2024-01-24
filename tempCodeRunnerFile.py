@@ -1,1 +1,1 @@
-setIndentation
+ self.comboBox_6.addItems(["LOX/Kérosène","LOX/LCH4","LOX/LH2"])  
