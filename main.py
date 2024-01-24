@@ -38,8 +38,7 @@ class MyQtApp(QMainWindow):
         self.dateTimeEdit.setDateTime(dt) 
         self.dateTimeEdit_2.setDateTime(dt2) 
         self.count = 0
-        self.color = []
-
+        self.color_child = {}
         self.treeWidget.setAlternatingRowColors(True)
         #self.treeWidget.header().setVisible(False)
         self.parent_list=[]
@@ -63,23 +62,27 @@ class MyQtApp(QMainWindow):
 
     def actionValidate_func(self):
         try:
+            print(self.color_child)
             list_of_obj = []
+            list_of_color = []
             for i in range(self.count):
                 list_of_obj.append(str(self.parent_list[i][0].child(0).text(0)))
+            for i in list(self.color_child):
+                list_of_color.append(self.color_child[i]["color"])
             if self.radioButton.isChecked()==True:
                 with open(dir_path + '\\jsons\\param.json', 'w') as f:
                     json.dump([{"val":list_of_obj,
                                 "date":str(self.dateTimeEdit.dateTime()).split("(")[1].split(")")[0].split(","),
                                 "live":2,
                                 "Dt":str(self.dateTimeEdit_2.dateTime()).split("(")[1].split(")")[0].split(","),
-                                "color": self.color}], f) 
+                                "color": list_of_color}], f) 
             else:   
                 with open(dir_path + '\\jsons\\param.json', 'w') as f:
                     json.dump([{"val":list_of_obj,
                                 "date":str(self.dateTimeEdit.dateTime()).split("(")[1].split(")")[0].split(","),
                                 "live":0,
                                 "Dt":str(self.dateTimeEdit_2.dateTime()).split("(")[1].split(")")[0].split(","),
-                                "color": self.color}], f) 
+                                "color": list_of_color}], f) 
             print("wrote")
         except:
             pass
@@ -107,14 +110,19 @@ class MyQtApp(QMainWindow):
     
     def pushButton_func(self):
         print("+")
+        color = {}
         self.count = self.count + 1
 
         self.parent_tree = QTreeWidgetItem(self.treeWidget,[str(self.comboBox_2.currentText())])
         self.parent_tree.addChild(QTreeWidgetItem([str(self.comboBox_2.currentIndex())]))
 
-        self.color.append([randint(0, 255), randint(0, 255), randint(0, 255)]) #faut mettre ca en dict et relier la couleur au child
+        color["color"]=[randint(0, 255), randint(0, 255), randint(0, 255)] #faut mettre ca en dict et relier la couleur au child
+        color["name"]=str(data[int(self.comboBox_2.currentIndex())]["OBJECT_NAME"])
+        self.color_child[str([self.parent_tree])]=color
+        #print(self.color)
+        print(self.color_child)
 
-        self.parent_tree.setForeground(0, QColor(self.color[0], self.color[1], self.color[2]))
+        self.parent_tree.setForeground(0, QColor(color["color"][0], color["color"][1], color["color"][2]))
 
         self.child_tree = QTreeWidgetItem(["OBJECT_ID"])
         self.parent_tree.addChild(self.child_tree)
@@ -145,6 +153,7 @@ class MyQtApp(QMainWindow):
         self.count = self.count - 1
         selected_items = self.treeWidget.selectedItems()
         self.parent_list.remove(selected_items)
+        del self.color_child[str(selected_items)]
         if selected_items:
             item_to_remove = selected_items[0]
             parent_item = item_to_remove.parent()
@@ -166,7 +175,7 @@ if __name__ == '__main__':
                         "date":["0", " 0", " 0", " 0", " 0"],
                         "live":2,
                         "Dt":["0", " 0", " 0", " 0", " 0"],
-                        "color": [0, 0, 255]}], f)
+                        "color": {"color":[0, 0, 255]}}], f)
             
     with open(dir_path + '\\jsons\\data.json', 'r') as file:
         data = json.load(file)  

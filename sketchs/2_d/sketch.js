@@ -39,12 +39,17 @@ function draw() {
   rect(-180, -90, 360, 180);
   pop();
 
-  for (let index = 0; index < data_py[0]["val"].length; index++) {
-    my_object = new Orbit(data_sat[val_py[index]], date_py, live_statut, Dt_py);
+  for (let index_1 = 0; index_1 < data_py[0]["val"].length; index_1++) {
+    my_object = new Orbit(
+      data_sat[val_py[index_1]],
+      date_py,
+      live_statut,
+      Dt_py
+    );
     my_object.total();
 
     push();
-    stroke(color[0], color[1], color[2]);
+    stroke(color[index_1][0], color[index_1][1], color[index_1][2]);
     strokeWeight(3);
     beginShape(POINTS);
     for (let index = 0; index < my_object.lat.length; index++) {
