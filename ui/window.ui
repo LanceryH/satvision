@@ -233,6 +233,19 @@
       </property>
      </widget>
     </widget>
+    <widget class="QGroupBox" name="groupBox_10">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>360</y>
+       <width>191</width>
+       <height>181</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Zone</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
@@ -318,11 +331,16 @@
        <property name="geometry">
         <rect>
          <x>210</x>
-         <y>170</y>
+         <y>30</y>
          <width>191</width>
-         <height>151</height>
+         <height>291</height>
         </rect>
        </property>
+       <column>
+        <property name="text">
+         <string>Rocket</string>
+        </property>
+       </column>
       </widget>
       <widget class="QGroupBox" name="groupBox_5">
        <property name="geometry">
@@ -336,26 +354,6 @@
        <property name="title">
         <string>Nozzle</string>
        </property>
-       <widget class="QKeySequenceEdit" name="keySequenceEdit">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>30</y>
-          <width>113</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QKeySequenceEdit" name="keySequenceEdit_2">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>60</y>
-          <width>113</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_5">
         <property name="geometry">
          <rect>
@@ -380,16 +378,6 @@
         </property>
         <property name="text">
          <string>Re</string>
-        </property>
-       </widget>
-       <widget class="QKeySequenceEdit" name="keySequenceEdit_3">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>90</y>
-          <width>113</width>
-          <height>22</height>
-         </rect>
         </property>
        </widget>
        <widget class="QLabel" name="label_7">
@@ -444,14 +432,44 @@
          <string>deg</string>
         </property>
        </widget>
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>30</y>
+          <width>113</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_2">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>60</y>
+          <width>113</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_3">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>90</y>
+          <width>113</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
       <widget class="QGroupBox" name="groupBox_8">
        <property name="geometry">
         <rect>
          <x>410</x>
-         <y>160</y>
+         <y>180</y>
          <width>161</width>
-         <height>161</height>
+         <height>141</height>
         </rect>
        </property>
        <property name="title">
@@ -522,50 +540,14 @@
          <string>🟢</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_4">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>130</y>
-          <width>21</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>6</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>+</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_3">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>130</y>
-          <width>21</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>6</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>-</string>
-        </property>
-       </widget>
       </widget>
       <widget class="QGroupBox" name="groupBox_6">
        <property name="geometry">
         <rect>
-         <x>210</x>
-         <y>20</y>
+         <x>10</x>
+         <y>160</y>
          <width>191</width>
-         <height>131</height>
+         <height>161</height>
         </rect>
        </property>
        <property name="title">
@@ -584,16 +566,6 @@
          <string>m</string>
         </property>
        </widget>
-       <widget class="QKeySequenceEdit" name="keySequenceEdit_6">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>60</y>
-          <width>113</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_13">
         <property name="geometry">
          <rect>
@@ -605,16 +577,6 @@
         </property>
         <property name="text">
          <string>Ri</string>
-        </property>
-       </widget>
-       <widget class="QKeySequenceEdit" name="keySequenceEdit_5">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>90</y>
-          <width>113</width>
-          <height>22</height>
-         </rect>
         </property>
        </widget>
        <widget class="QLabel" name="label_15">
@@ -656,16 +618,6 @@
          <string>w</string>
         </property>
        </widget>
-       <widget class="QKeySequenceEdit" name="keySequenceEdit_4">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>30</y>
-          <width>113</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_16">
         <property name="geometry">
          <rect>
@@ -679,6 +631,72 @@
          <string>e</string>
         </property>
        </widget>
+       <widget class="QLineEdit" name="lineEdit_4">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>30</y>
+          <width>113</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_5">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>60</y>
+          <width>113</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_6">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>90</y>
+          <width>113</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_7">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>120</y>
+          <width>113</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_18">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>120</y>
+          <width>21</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Pc</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_19">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>120</y>
+          <width>21</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>N</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QGroupBox" name="groupBox_7">
        <property name="geometry">
@@ -686,7 +704,7 @@
          <x>410</x>
          <y>20</y>
          <width>161</width>
-         <height>131</height>
+         <height>151</height>
         </rect>
        </property>
        <property name="title">
@@ -738,125 +756,40 @@
          <string>Choice</string>
         </property>
        </widget>
-      </widget>
-      <widget class="QGroupBox" name="groupBox_9">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>160</y>
-         <width>191</width>
-         <height>161</height>
-        </rect>
-       </property>
-       <property name="title">
-        <string>Mass optimizer</string>
-       </property>
-       <widget class="QKeySequenceEdit" name="keySequenceEdit_16">
+       <widget class="QPushButton" name="pushButton_3">
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>30</y>
-          <width>113</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QKeySequenceEdit" name="keySequenceEdit_17">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>60</y>
-          <width>113</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_18">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>30</y>
+          <y>120</y>
           <width>21</width>
-          <height>16</height>
+          <height>21</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>6</pointsize>
+         </font>
         </property>
         <property name="text">
-         <string>N</string>
+         <string>-</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_38">
+       <widget class="QPushButton" name="pushButton_4">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>60</y>
+          <x>10</x>
+          <y>120</y>
           <width>21</width>
-          <height>16</height>
+          <height>21</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>6</pointsize>
+         </font>
         </property>
         <property name="text">
-         <string>Re</string>
-        </property>
-       </widget>
-       <widget class="QKeySequenceEdit" name="keySequenceEdit_18">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>90</y>
-          <width>113</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_39">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>90</y>
-          <width>21</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string> θ</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_40">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>30</y>
-          <width>21</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>m</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_41">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>60</y>
-          <width>21</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>m</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_42">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>90</y>
-          <width>21</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>deg</string>
+         <string>+</string>
         </property>
        </widget>
       </widget>

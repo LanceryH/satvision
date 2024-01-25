@@ -30,6 +30,9 @@ class MyQtApp(QMainWindow):
         self.radioButton.toggled.connect(self.radioButton_func) 
         self.pushButton.clicked.connect(self.pushButton_func)
         self.pushButton_2.clicked.connect(self.pushButton_2_func)
+        self.pushButton_3.clicked.connect(self.pushButton_3_func)
+        self.pushButton_4.clicked.connect(self.pushButton_4_func)
+        self.pushButton_5.clicked.connect(self.pushButton_5_func)
         self.comboBox.currentIndexChanged.connect(self.comboBox_func) 
         self.comboBox.addItems(["Satellite","Launcher"])  
         self.comboBox_2.currentIndexChanged.connect(self.comboBox_2_func) 
@@ -41,10 +44,13 @@ class MyQtApp(QMainWindow):
         self.dateTimeEdit.setDateTime(dt) 
         self.dateTimeEdit_2.setDateTime(dt2) 
         self.count = 0
+        self.count_2 = 0
         self.color_child = {}
         self.treeWidget.setAlternatingRowColors(True)
+        self.treeWidget_2.setAlternatingRowColors(True)
         #self.treeWidget.header().setVisible(False)
         self.parent_list=[]
+        self.parent_list_2=[]
         self.show()
 
     def actionUpdate_func(self):
@@ -111,6 +117,17 @@ class MyQtApp(QMainWindow):
     def comboBox_2_func(self):
         return
     
+    def pushButton_5_func(self):
+        R_i = self.lineEdit_4.text()
+        w = self.lineEdit_5.text()
+        e = self.lineEdit_6.text()
+        R_et = self.lineEdit.text()
+        R_e = self.lineEdit_2.text()
+        theta = self.lineEdit_3.text()
+        Pc = self.lineEdit_7.text()
+        
+        return
+
     def comboBox_5_func(self):
         if self.comboBox_5.currentText()=="Mixpropellants":
             self.comboBox_6.clear()
@@ -131,8 +148,6 @@ class MyQtApp(QMainWindow):
         color["color"]=[randint(0, 255), randint(0, 255), randint(0, 255)] #faut mettre ca en dict et relier la couleur au child
         color["name"]=str(data[int(self.comboBox_2.currentIndex())]["OBJECT_NAME"])
         self.color_child[str([self.parent_tree])]=color
-        #print(self.color)
-        print(self.color_child)
 
         self.parent_tree.setForeground(0, QColor(color["color"][0], color["color"][1], color["color"][2]))
 
@@ -174,6 +189,31 @@ class MyQtApp(QMainWindow):
                 parent_item.takeChild(parent_item.indexOfChild(item_to_remove))
             else:
                 self.treeWidget.takeTopLevelItem(self.treeWidget.indexOfTopLevelItem(item_to_remove))
+
+        return
+
+    def pushButton_3_func(self):
+        print("-")
+        self.count_2 = self.count_2 - 1
+        selected_items = self.treeWidget_2.selectedItems()
+        self.parent_list_2.remove(selected_items)
+        if selected_items:
+            item_to_remove = selected_items[0]
+            parent_item = item_to_remove.parent()
+
+            if parent_item:
+                parent_item.takeChild(parent_item.indexOfChild(item_to_remove))
+            else:
+                self.treeWidget_2.takeTopLevelItem(self.treeWidget_2.indexOfTopLevelItem(item_to_remove))
+
+        return
+    
+    def pushButton_4_func(self):
+        print("+")
+        self.count_2 = self.count_2 + 1
+        self.parent_tree = QTreeWidgetItem(self.treeWidget_2,["stage "+str(self.count_2)])
+        self.parent_tree.addChild(QTreeWidgetItem([str(self.comboBox_2.currentIndex())]))
+        self.parent_list_2.append([self.parent_tree])
 
         return
             
