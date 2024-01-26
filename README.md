@@ -46,16 +46,34 @@ pip install PyQtWebEngine
 ## Tuto
 
 > [!TIP]
-> #### Create a scenario
+> <details>
+> <summary>Create a scenario</summary>
 > - Go to the "Select" box on the left
+> <br>
 > - In the "List label" choose the satellite you want to see
+> <br>
 > - Click on the "+" to add the satellite to the scenario (box on the right)
+> <br>
 > - Next go to the "View" menu bar on the top and click on "Validate" then on "Refresh"
+> </details>
 
 > [!TIP]
-> #### View not showing
+> <details>
+> <summary>View not showing</summary>
 > - Go to the "View" menu bar on the top and click on "Refresh"
+> <br>
 > - Or right click on the white blank view and click on "Reload"
+> </details>
+
+> [!TIP]
+> <details>
+> <summary>Diverging position</summary>
+> Since the position is calculated until reaching the time set, the initial data needs to be updated frequently (1 week~).
+> The method consist of finding with a converging algorithm the mean anomly for each new dt.
+> Without considering multiple factor such as drag (solar wind, athmosphere...) and booster ignition.
+> <br>
+> - Go to the "File" menu bar on the top and click on "Update"
+> </details>
 
 ## Author
 
