@@ -26,6 +26,7 @@ The main objectifs:
 > Stages mass and nozzle optimizer is in progress
 
 ## Requirements
+
 ```
 pip install numpy
 pip install PyQt5
@@ -36,7 +37,7 @@ pip install PyQtWebEngine
 [calculation class](https://github.com/LanceryH/satvision/blob/main/sketchs/libraries/mover.js)
 
 ## Preview
-<img src="https://github.com/LanceryH/satvision/assets/108919405/0ebd0d45-2b33-4089-8a7e-cff13e8d2b1b" alt="drawing" width="70%" height="70%"/>
+<img src="https://github.com/LanceryH/satvision/assets/108919405/5594c15a-89de-4198-9f2e-e1c458e0816f" alt="drawing" width="70%" height="70%"/>
 
 <img src="https://github.com/LanceryH/satvision/assets/108919405/7ab9e76d-b3b2-43ed-a275-d81ea22be254" alt="drawing" width="70%" height="70%"/>
 
