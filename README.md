@@ -56,7 +56,7 @@ pip install PyQtWebEngine
 > <br>
 > - Next go to the "View" menu bar on the top and click on "Validate" then on "Refresh"
 > <br>
-> ⚠️ if "Live time" is checked, 🟢 is the live position and 🔵 the position after 1 orbit.
+> ⚠️ If "Live time" is checked, 🟢 is the live position and 🔵 the position after 1 orbit.
 > </details>
 
 > [!TIP]
