@@ -48,11 +48,11 @@ pip install PyQtWebEngine
 > [!TIP]
 > <details>
 > <summary>Create a scenario</summary>
-> - Go to the "Select" box on the left
+> - Go to the "Select" section on the left
 > <br>
 > - In the "List label" choose the satellite you want to see
 > <br>
-> - Click on the "+" to add the satellite to the scenario (box on the right)
+> - Click on the "+" to add the satellite to the scenario (section on the right)
 > <br>
 > - Next go to the "View" menu bar on the top and click on "Validate" then on "Refresh"
 > </details>
