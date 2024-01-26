@@ -36,11 +36,11 @@ pip install PyQtWebEngine
 [calculation class](https://github.com/LanceryH/satvision/blob/main/sketchs/libraries/mover.js)
 
 ## Preview
-<img src="https://github.com/LanceryH/satvision/assets/108919405/6157aca0-8262-4c38-bfec-03f674581239" alt="drawing" width="70%" height="70%"/>
+<img src="https://github.com/LanceryH/satvision/assets/108919405/0ebd0d45-2b33-4089-8a7e-cff13e8d2b1b" alt="drawing" width="70%" height="70%"/>
 
-<img src="https://github.com/LanceryH/satvision/assets/108919405/74160924-26e7-4f0f-b883-05fea71e9071" alt="drawing" width="70%" height="70%"/>
+<img src="https://github.com/LanceryH/satvision/assets/108919405/7ab9e76d-b3b2-43ed-a275-d81ea22be254" alt="drawing" width="70%" height="70%"/>
 
-<img src="https://github.com/LanceryH/satvision/assets/108919405/ac12d31d-f400-4326-841c-64a7756e12b8" alt="drawing" width="70%" height="70%"/>
+<img src="https://github.com/LanceryH/satvision/assets/108919405/5fb63844-9ce8-4f06-9080-0c26b05e71c8" alt="drawing" width="70%" height="70%"/>
 
 ## Author
 
