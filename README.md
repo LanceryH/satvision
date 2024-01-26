@@ -23,7 +23,7 @@ The main objectifs:
 - [ ] Nozzle optimizer
 
 > [!NOTE]
-> Stages mass and nozzle optimizer is in progress
+> Stages mass and nozzle optimizer are in progress
 
 ## Requirements
 
