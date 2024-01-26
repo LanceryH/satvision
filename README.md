@@ -43,6 +43,20 @@ pip install PyQtWebEngine
 
 <img src="https://github.com/LanceryH/satvision/assets/108919405/5fb63844-9ce8-4f06-9080-0c26b05e71c8" alt="drawing" width="70%" height="70%"/>
 
+## Tuto
+
+> [!TIP]
+> #### Create a scenario
+> - Go to the "Select" box on the left
+> - In the "List label" choose the satellite you want to see
+> - Click on the "+" to add the satellite to the scenario (box on the right)
+> - Next go to the "View" menu bar on the top and click on "Validate" then on "Refresh"
+
+> [!TIP]
+> #### View not showing
+> - Go to the "View" menu bar on the top and click on "Refresh"
+> - Or right click on the white blank view and click on "Reload"
+
 ## Author
 
 - [Hugo Lancery](https://github.com/LanceryH)
