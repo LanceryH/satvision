@@ -23,9 +23,10 @@ The main objectifs:
 - [ ] Nozzle optimizer
 
 > [!NOTE]
-> Stages mass and nozzle optimizer is in progress
+> Stages mass and nozzle optimizer are in progress
 
 ## Requirements
+
 ```
 pip install numpy
 pip install PyQt5
@@ -36,11 +37,45 @@ pip install PyQtWebEngine
 [calculation class](https://github.com/LanceryH/satvision/blob/main/sketchs/libraries/mover.js)
 
 ## Preview
-<img src="https://github.com/LanceryH/satvision/assets/108919405/6157aca0-8262-4c38-bfec-03f674581239" alt="drawing" width="70%" height="70%"/>
+<img src="https://github.com/LanceryH/satvision/assets/108919405/5594c15a-89de-4198-9f2e-e1c458e0816f" alt="drawing" width="70%" height="70%"/>
 
-<img src="https://github.com/LanceryH/satvision/assets/108919405/74160924-26e7-4f0f-b883-05fea71e9071" alt="drawing" width="70%" height="70%"/>
+<img src="https://github.com/LanceryH/satvision/assets/108919405/7ab9e76d-b3b2-43ed-a275-d81ea22be254" alt="drawing" width="70%" height="70%"/>
 
-<img src="https://github.com/LanceryH/satvision/assets/108919405/ac12d31d-f400-4326-841c-64a7756e12b8" alt="drawing" width="70%" height="70%"/>
+<img src="https://github.com/LanceryH/satvision/assets/108919405/5fb63844-9ce8-4f06-9080-0c26b05e71c8" alt="drawing" width="70%" height="70%"/>
+
+## Tuto
+
+> [!TIP]
+> <details>
+> <summary>Create a scenario</summary>
+> - Go to the "Select" section on the left
+> <br>
+> - In the "List label" choose the satellite you want to see
+> <br>
+> - Click on the "+" to add the satellite to the scenario (section on the right)
+> <br>
+> - Next go to the "View" menu bar on the top and click on "Validate" then on "Refresh"
+> <br>
+> ⚠️ If "Live time" is checked, 🟢 is the live position and 🔵 the position after 1 orbit on the 2D and 3D view.
+> </details>
+
+> [!TIP]
+> <details>
+> <summary>View not showing</summary>
+> - Go to the "View" menu bar on the top and click on "Refresh"
+> <br>
+> - Or right click on the white blank view and click on "Reload"
+> </details>
+
+> [!TIP]
+> <details>
+> <summary>Diverging position</summary>
+> Since the position is calculated until reaching the time set, the initial data needs to be updated frequently (1 week~).
+> The method consist of finding with a converging algorithm the mean anomly for each new dt.
+> Without considering multiple factor such as drag (solar wind, athmosphere...) and booster ignition.
+> <br>
+> - Go to the "File" menu bar on the top and click on "Update"
+> </details>
 
 ## Author
 
