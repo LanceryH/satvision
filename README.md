@@ -10,6 +10,7 @@ live orbit propagator and more
 </pre>
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/lanceryH/satvision/main)
 
 </div>
