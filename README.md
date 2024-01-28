@@ -37,7 +37,9 @@ pip install PyQtWebEngine
 
 ## Algorithms
 [Orbit calculation class](https://github.com/LanceryH/satvision/blob/main/sketchs/libraries/mover.js)
+
 [Rocket calculation class](https://github.com/LanceryH/satvision/blob/ce2eef65915271421f35c3ef88ad90c770a4b9ad/source/mission.py)
+
 ## Preview
 <img src="https://github.com/LanceryH/satvision/assets/108919405/5594c15a-89de-4198-9f2e-e1c458e0816f" alt="drawing" width="70%" height="70%"/>
 
