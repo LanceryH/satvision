@@ -205,7 +205,6 @@ class Orbit {
   }
 
   calculate_GMST(year, month, day, hour, minute, second) {
-    // Calculate the Julian Date (JD) for the given date and time
     const a = Math.floor((14 - month) / 12);
     const y = year + 4800 - a;
     const m = month + 12 * a - 3;
@@ -218,17 +217,13 @@ class Orbit {
       Math.floor(y / 400) -
       32045;
     JD += (hour - 12) / 24.0 + minute / 1440.0 + second / 86400.0;
-
-    // Calculate the Julian centuries since J2000.0
     const T = (JD - 2451545.0) / 36525.0;
 
-    // Calculate the mean sidereal time in degrees
     this.GMST =
       280.46061837 +
       360.98564736629 * (JD - 2451545.0) +
       T ** 2 * (0.000387933 - T / 38710000);
 
-    // Ensure the result is in the range [0, 360] degrees
     this.GMST %= 360;
 
     return this.GMST;
@@ -324,7 +319,7 @@ class Orbit {
     const nbPts = parseInt(nbOrbit * 50);
     const T = this.create_arrange(0, parseInt(nbIts), parseInt(nbIts / nbPts));
     this.EPOCH_NOW = d2;
-    const dt = (d2 - d1) / 1000 - 3600; //FAUT METTRE LA CORRECTION DU GMT+00
+    const dt = (d2 - d1) / 1000 - 3600; //PLS MAKE AUTOMATIC THE GMT+01:00 for paris => -3600
 
     this.R = [
       this.create_array(0, nbPts),
