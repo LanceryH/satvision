@@ -75,7 +75,7 @@ function draw() {
 
     push();
     stroke(color[index_1][0], color[index_1][1], color[index_1][2]);
-    strokeWeight(3);
+    strokeWeight(2);
     noFill();
     beginShape();
     for (let index = 0; index < line_right_lon.length; index++) {
@@ -86,7 +86,7 @@ function draw() {
 
     push();
     stroke(color[index_1][0], color[index_1][1], color[index_1][2]);
-    strokeWeight(3);
+    strokeWeight(2);
     noFill();
     beginShape();
     for (let index = 0; index < line_left_lon.length; index++) {
@@ -111,5 +111,13 @@ function draw() {
     vertex(my_object.lon[max_len], -my_object.lat[max_len]);
     endShape();
     pop();
+    noFill();
   }
+
+  beginShape();
+  vertex(-180, -90);
+  vertex(180, -90);
+  vertex(180, 90);
+  vertex(-180, 90);
+  endShape(CLOSE);
 }

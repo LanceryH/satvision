@@ -325,7 +325,7 @@
        </rect>
       </property>
       <property name="title">
-       <string>GroupBox</string>
+       <string>Parameters</string>
       </property>
       <widget class="QTreeWidget" name="treeWidget_2">
        <property name="geometry">
