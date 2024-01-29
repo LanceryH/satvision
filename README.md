@@ -42,7 +42,7 @@ pip install PyQtWebEngine
 ## Preview
 <img src="https://github.com/LanceryH/satvision/assets/108919405/5594c15a-89de-4198-9f2e-e1c458e0816f" alt="drawing" width="70%" height="70%"/>
 
-<img src="https://github.com/LanceryH/satvision/assets/108919405/7ab9e76d-b3b2-43ed-a275-d81ea22be254" alt="drawing" width="70%" height="70%"/>
+<img src="https://github.com/LanceryH/satvision/assets/108919405/0e45bab5-68b5-4712-a36f-d583a5794fc5" alt="drawing" width="70%" height="70%"/>
 
 <img src="https://github.com/LanceryH/satvision/assets/108919405/5fb63844-9ce8-4f06-9080-0c26b05e71c8" alt="drawing" width="70%" height="70%"/>
 
