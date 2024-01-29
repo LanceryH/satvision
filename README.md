@@ -87,5 +87,3 @@ pip install PyQtWebEngine
 ## Contributors
 
 - [Vincent Laduguie](https://github.com/VincentLdg)
-- Vincent Robert
-- [Josselin Desmars](http://josselin.desmars.free.fr/work/)
