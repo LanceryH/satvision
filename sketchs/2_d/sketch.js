@@ -48,49 +48,12 @@ function draw() {
     );
     my_object.total();
 
-    let line_right_lon = [];
-    let line_right_lat = [];
-    let line_left_lon = [];
-    let line_left_lat = [];
-
-    index_left = 0;
-
+    push();
+    stroke(color[index_1][0], color[index_1][1], color[index_1][2]);
+    strokeWeight(3);
+    beginShape(POINTS);
     for (let index = 0; index < my_object.lat.length; index++) {
-      if (
-        my_object.lon[0] <= my_object.lon[index] &&
-        my_object.lon[index] < 180
-      ) {
-        line_right_lon.push(my_object.lon[index]);
-        line_right_lat.push(-my_object.lat[index]);
-      } else {
-        index_left = index;
-        break;
-      }
-    }
-
-    for (let index = index_left; index < my_object.lon.length; index++) {
-      line_left_lon.push(my_object.lon[index]);
-      line_left_lat.push(-my_object.lat[index]);
-    }
-
-    push();
-    stroke(color[index_1][0], color[index_1][1], color[index_1][2]);
-    strokeWeight(2);
-    noFill();
-    beginShape();
-    for (let index = 0; index < line_right_lon.length; index++) {
-      vertex(line_right_lon[index], line_right_lat[index]);
-    }
-    endShape();
-    pop();
-
-    push();
-    stroke(color[index_1][0], color[index_1][1], color[index_1][2]);
-    strokeWeight(2);
-    noFill();
-    beginShape();
-    for (let index = 0; index < line_left_lon.length; index++) {
-      vertex(line_left_lon[index], line_left_lat[index]);
+      vertex(my_object.lon[index], -my_object.lat[index]);
     }
     endShape();
     pop();
@@ -111,9 +74,9 @@ function draw() {
     vertex(my_object.lon[max_len], -my_object.lat[max_len]);
     endShape();
     pop();
-    noFill();
   }
 
+  noFill();
   beginShape();
   vertex(-180, -90);
   vertex(180, -90);

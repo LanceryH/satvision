@@ -9,7 +9,7 @@ let Dt_py;
 function preload() {
   data_sat = loadJSON("../../jsons/data.json");
   data_py = loadJSON("../../jsons/param.json");
-  img = loadImage("../../image/map_earth.jpg");
+  img = loadImage("../../image/map_earth_nocloud.jpg");
   img_moon = loadImage("../../image/map_moon.jpg");
 }
 
@@ -34,7 +34,7 @@ function draw() {
   background(0);
   orbitControl(1, 1, 1);
   scale(0.02);
-  perspective(180 / 3.0, width / height, 0.1, 150000);
+  perspective(180 / 3.0, width / height, 0.1, 15000000);
   //pointLight(255, 255, 255, 15000, 15000, 15000);
 
   push();
@@ -54,15 +54,22 @@ function draw() {
   sphere(1737, 25, 25);
   pop();
 
-  push();
-  noFill();
-  stroke(255, 255, 0);
-  strokeWeight(1);
-  for (let index = 0; index < 50; index++) {
-    rotateY(15);
-    ellipse(0, 0, 6375 * 2, 6375 * 2, 50);
-  }
-  pop();
+  //push();
+  //stroke(255, 255, 0);
+  //strokeWeight(10);
+  //translate(149000000, 0);
+  //sphere(696342, 25, 25);
+  //pop();
+
+  //push();
+  //noFill();
+  //stroke(255, 255, 0);
+  //strokeWeight(1);
+  //for (let index = 0; index < 50; index++) {
+  //  rotateY(15);
+  //  ellipse(0, 0, 6375 * 2, 6375 * 2, 50);
+  //}
+  //pop();
 
   for (let index_1 = 0; index_1 < data_py[0]["val"].length; index_1++) {
     my_object = new Orbit(
