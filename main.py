@@ -3,12 +3,16 @@ import sys
 import requests
 import json
 import os
+import pandas as pd
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTreeWidgetItem
 from PyQt5.QtCore import QUrl, QRect, QDateTime
 from PyQt5.QtGui import QColor
 from PyQt5.uic import loadUi
 from PyQt5.QtWebEngineWidgets import QWebEngineView
-from source import parameters as params
+import parameters as params
+from stage import Stage_class
+from rocket import Rocket_class
+from mission import Mission_class
 from random import randint
 
 class MyQtApp(QMainWindow):
@@ -48,7 +52,6 @@ class MyQtApp(QMainWindow):
         self.color_child = {}
         self.treeWidget.setAlternatingRowColors(True)
         self.treeWidget_2.setAlternatingRowColors(True)
-        #self.treeWidget.header().setVisible(False)
         self.parent_list=[]
         self.parent_list_2=[]
         self.show()
@@ -212,11 +215,66 @@ class MyQtApp(QMainWindow):
         print("+")
         self.count_2 = self.count_2 + 1
         self.parent_tree = QTreeWidgetItem(self.treeWidget_2,["stage "+str(self.count_2)])
-        self.parent_tree.addChild(QTreeWidgetItem([str(self.comboBox_2.currentIndex())]))
+
+        self.child_tree = QTreeWidgetItem(["Stage n°"])
+        self.parent_tree.addChild(self.child_tree)
+        self.child_tree.addChild(QTreeWidgetItem([str(self.comboBox_2.currentIndex())]))
+
+        self.child_tree = QTreeWidgetItem(["Isp"])
+        self.parent_tree.addChild(self.child_tree)
+        self.child_tree.addChild(QTreeWidgetItem([str(self.lineEdit_ISP.text())]))
+
+        self.child_tree = QTreeWidgetItem(["k*"])
+        self.parent_tree.addChild(self.child_tree)
+        self.child_tree.addChild(QTreeWidgetItem([str(self.lineEdit_index.text())]))
+
+        self.child_tree = QTreeWidgetItem(["Mass Propellant"])
+        self.parent_tree.addChild(self.child_tree)
+        self.child_tree.addChild(QTreeWidgetItem([str(self.lineEdit_mprop.text())]))
+
+        self.child_tree = QTreeWidgetItem(["Mass Payload"])
+        self.parent_tree.addChild(self.child_tree)
+        self.child_tree.addChild(QTreeWidgetItem([str(self.lineEdit_mpay.text())]))
+
         self.parent_list_2.append([self.parent_tree])
 
         return
-            
+    
+    def pushButton_5_func(self):
+        stage_Solid_1 = Stage_class(PROPELLANT_TYPE="Solid",PROPELLANT_MASS=500,STAGE_NUMBER="1")
+        stage_Solid_1.build()
+
+        stage_LOX_RP1_1 = Stage_class(PROPELLANT_TYPE="LOX-RP1",PROPELLANT_MASS=500,STAGE_NUMBER="1")
+        stage_LOX_RP1_1.build()
+
+        stage_LOX_RP1_2_3 = Stage_class(PROPELLANT_TYPE="LOX-RP1",PROPELLANT_MASS=200,STAGE_NUMBER="2")
+        stage_LOX_RP1_2_3.build()
+
+        stage_LOX_LK2_2_3 = Stage_class(PROPELLANT_TYPE="LOX-LK2",PROPELLANT_MASS=200,STAGE_NUMBER="2")
+        stage_LOX_LK2_2_3.build()
+
+        stages_combination = {"Solid+RP1":[stage_Solid_1,stage_LOX_RP1_2_3]}
+
+        data_dic = {"":["Mass propellant stage 1",
+                            "Mass structure stage 1",
+                            "Mass propellant stage 2",
+                            "Mass structure stage 2",
+                            "Mass propellant stage 3",
+                            "Mass structure stage 3",
+                            "Total Mass",
+                            "Mission authorisation"]}
+
+        param_dic ={}
+        rocket_1 = Rocket_class(STAGES=stages_combination["Solid+RP1"],PAYLOAD_MASS=230)
+        rocket_1.build()
+        mission_1 = Mission_class(CLIENT="CNES",ALTITUDE=340,ROCKET=rocket_1)
+        mission_1.build(error_min=1e-5, b_last=3, pas=1)
+        data_dic=[mission_1.me1,mission_1.ms1,
+                        mission_1.me2,mission_1.ms2,
+                        mission_1.me3,mission_1.ms3,
+                        mission_1.m_total,
+                        mission_1.message]
+        print(data_dic)
 if __name__ == '__main__':
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
