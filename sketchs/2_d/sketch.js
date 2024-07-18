@@ -13,9 +13,10 @@ function preload() {
 }
 
 function setup() {
-  cnv = createCanvas(windowWidth, windowHeight, WEBGL);
+  cnv = createCanvas(540, 270, WEBGL);
   cnv.position(0, 0, "fixed");
 
+  if (data_py[0]["active"]){
   val_py = data_py[0]["val"];
   date_py = data_py[0]["date"];
   live_statut = data_py[0]["live"];
@@ -25,20 +26,20 @@ function setup() {
     my_object = new Orbit(data_sat[val_py[index]], date_py, live_statut, Dt_py);
     my_object.total();
   }
+}
   angleMode(DEGREES);
 }
 
 function draw() {
-  orbitControl(0, 0, 0);
   scale(1.5);
   clear();
-  background(250, 250, 250);
+  background(0);
   push();
-  stroke(240, 240, 240);
   texture(img);
   rect(-180, -90, 360, 180);
   pop();
 
+  if (data_py[0]["active"]){
   for (let index_1 = 0; index_1 < data_py[0]["val"].length; index_1++) {
     my_object = new Orbit(
       data_sat[val_py[index_1]],
@@ -83,4 +84,5 @@ function draw() {
   vertex(180, 90);
   vertex(-180, 90);
   endShape(CLOSE);
+}
 }

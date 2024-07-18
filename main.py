@@ -3,46 +3,61 @@ import sys
 import requests
 import json
 import os
+import signal
 import pandas as pd
-from PyQt5.QtWidgets import QApplication, QMainWindow, QTreeWidgetItem
-from PyQt5.QtCore import QUrl, QRect, QDateTime
-from PyQt5.QtGui import QColor
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas, NavigationToolbar2QT as NavigationToolbar
+from PyQt5 import QtWidgets, uic
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
 from PyQt5.uic import loadUi
-from PyQt5.QtWebEngineWidgets import QWebEngineView
 import parameters as params
 from stage import Stage_class
 from rocket import Rocket_class
 from mission import Mission_class
 from random import randint
+from views import *
 
 class MyQtApp(QMainWindow):
     def __init__(self):
         super().__init__()
         loadUi(dir_path +"\\ui\\window.ui",self)
-
-        self.webviewframe_2 = QWebEngineView(self.widget)
-        self.webviewframe_2.setUrl(QUrl(params.URL_3D))
-        self.webviewframe_2.setGeometry(QRect(0, 0, 581, 491))
-        self.webviewframe_2.setObjectName("webviewframe_2")
-        self.webviewframe_3 = QWebEngineView(self.widget_2)
-        self.webviewframe_3.setUrl(QUrl(params.URL_2D))
-        self.webviewframe_3.setGeometry(QRect(0, 0, 581, 491))
-        self.webviewframe_3.setObjectName("webviewframe_3")
+        
+        # Création du menu pour la "view"
+        self.actionUpdate = QAction(QIcon(dir_path + "\\ui\\images\\update.png"), "&Update", self)
+        self.menuSatvision.addAction(self.actionUpdate)
+        
+        self.actionLoad = QAction(QIcon(dir_path + "\\ui\\images\\load.png"), "&Load", self)
+        self.menuSatvision.addAction(self.actionLoad)
+        
+        self.action_3D_window = QAction("&3D window", self, checkable=True, checked=False)
+        self.action_3D_window.setShortcut("Ctrl+P")
+        self.menuView.addAction(self.action_3D_window)
+        self.action_3D_window.triggered.connect(self.show_3D_window)
+        
+        self.action_2D_window = QAction("&2D window", self, checkable=True, checked=False)
+        self.action_2D_window.setShortcut("Ctrl+M")
+        self.menuView.addAction(self.action_2D_window)
+        self.action_2D_window.triggered.connect(self.show_2D_window)
+        
+        self.actionRocket.triggered.connect(self.actionRocket_func)
+        self.actionNozzle.triggered.connect(self.actionNozzle_func)
+        
         self.actionUpdate.triggered.connect(self.actionUpdate_func)
-        self.actionValidate.triggered.connect(self.actionValidate_func)
-        self.actionRefresh.triggered.connect(self.actionRefresh_func)
         self.radioButton.toggled.connect(self.radioButton_func) 
         self.pushButton.clicked.connect(self.pushButton_func)
         self.pushButton_2.clicked.connect(self.pushButton_2_func)
-        self.pushButton_3.clicked.connect(self.pushButton_3_func)
-        self.pushButton_4.clicked.connect(self.pushButton_4_func)
-        self.pushButton_5.clicked.connect(self.pushButton_5_func)
+        # self.pushButton_3.clicked.connect(self.pushButton_3_func) a mettre dans Rocket window
+        # self.pushButton_4.clicked.connect(self.pushButton_4_func)
+        # self.pushButton_5.clicked.connect(self.pushButton_5_func)
+        self.pushButton_7.clicked.connect(self.actionValidate_func)
         self.comboBox.currentIndexChanged.connect(self.comboBox_func) 
         self.comboBox.addItems(["Satellite","Launcher"])  
         self.comboBox_2.currentIndexChanged.connect(self.comboBox_2_func) 
-        self.comboBox_5.addItems(["Monopropellants","Mixpropellants"]) 
-        self.comboBox_5.currentIndexChanged.connect(self.comboBox_5_func) 
-        self.comboBox_6.addItems(["H202","N2H4","N20","Solid"])  
+        # self.comboBox_5.addItems(["Monopropellants","Mixpropellants"]) 
+        # self.comboBox_5.currentIndexChanged.connect(self.comboBox_5_func) 
+        # self.comboBox_6.addItems(["H202","N2H4","N20","Solid"])  
         dt = QDateTime(int(data[0]["EPOCH"][0:4]), int(data[0]["EPOCH"][5:7]), int(data[0]["EPOCH"][8:10]), int(data[0]["EPOCH"][11:13]), int(data[0]["EPOCH"][14:16])) 
         dt2 = QDateTime(int(data[0]["EPOCH"][0:4]), int(data[0]["EPOCH"][5:7]), int(data[0]["EPOCH"][8:10]), int(data[0]["EPOCH"][11:13])+2, int(data[0]["EPOCH"][14:16])) 
         self.dateTimeEdit.setDateTime(dt) 
@@ -51,11 +66,60 @@ class MyQtApp(QMainWindow):
         self.count_2 = 0
         self.color_child = {}
         self.treeWidget.setAlternatingRowColors(True)
-        self.treeWidget_2.setAlternatingRowColors(True)
+        # self.treeWidget_2.setAlternatingRowColors(True)
         self.parent_list=[]
         self.parent_list_2=[]
+        finish = QAction("Quit", self)
+        finish.triggered.connect(self.closeEvent)
         self.show()
 
+    def actionRocket_func(self):
+        self.ui_Rocket = Window_Rocket()
+    
+    def actionNozzle_func(self):
+        self.ui_Nozzle = Window_Nozzle()
+        
+    def closeEvent(self, event):
+        with open(dir_path + '\\jsons\\param.json', 'w') as f:
+            json.dump([{"val": None,
+                        "date": None,
+                        "live":None,
+                        "Dt":None,
+                        "color": None,
+                        "active": False}], f)
+        for window in QApplication.topLevelWidgets():
+            window.close()
+            
+    def update_menu_window_3D(self):
+        print("closed")
+        #self.action_3D_window.isChecked(False)
+        
+    def show_3D_window(self):
+        try:
+            if self.ui_3D.isActiveWindow():
+                self.ui_3D.close() 
+        except:
+            pass
+        if self.action_3D_window.isChecked():
+            self.ui_3D = Window_3D()
+            self.ui_3D.dad = ui
+        else:
+            try:
+                self.ui_3D.close() 
+            except:
+                pass
+                
+    
+    def show_2D_window(self):
+        if self.action_2D_window.isChecked():
+            self.ui_2D = Window_2D()
+            self.ui_2D.dad = ui
+        else:
+            try:
+                self.ui_2D.close() 
+            except:
+                pass
+        
     def actionUpdate_func(self):
         response = requests.get(params.URL_CELESTRAK)
         data = response.text
@@ -66,11 +130,6 @@ class MyQtApp(QMainWindow):
                 print("Done")
         else:
             print("Error")
-
-
-    def actionRefresh_func(self):
-        self.webviewframe_2.load(QUrl(params.URL_3D))   
-        self.webviewframe_3.load(QUrl(params.URL_2D))
 
     def actionValidate_func(self):
         try:
@@ -87,18 +146,28 @@ class MyQtApp(QMainWindow):
                                 "date":str(self.dateTimeEdit.dateTime()).split("(")[1].split(")")[0].split(","),
                                 "live":2,
                                 "Dt":str(self.dateTimeEdit_2.dateTime()).split("(")[1].split(")")[0].split(","),
-                                "color": list_of_color}], f) 
+                                "color": list_of_color,
+                                "active": True}], f) 
             else:   
                 with open(dir_path + '\\jsons\\param.json', 'w') as f:
                     json.dump([{"val":list_of_obj,
                                 "date":str(self.dateTimeEdit.dateTime()).split("(")[1].split(")")[0].split(","),
                                 "live":0,
                                 "Dt":str(self.dateTimeEdit_2.dateTime()).split("(")[1].split(")")[0].split(","),
-                                "color": list_of_color}], f) 
+                                "color": list_of_color,
+                                "active": True}], f) 
             print("wrote")
         except:
             pass
-
+        try:
+            self.ui_3D.webviewframe.load(QUrl(params.URL_3D))
+        except:
+            pass
+        try:
+            self.ui_2D.webviewframe.load(QUrl(params.URL_2D))
+        except:
+            pass
+        
     def radioButton_func(self):
         if self.radioButton.isChecked()==True:
             self.dateTimeEdit_2.setEnabled(False)
@@ -150,7 +219,7 @@ class MyQtApp(QMainWindow):
 
         color["color"]=[randint(0, 255), randint(0, 255), randint(0, 255)] #faut mettre ca en dict et relier la couleur au child
         color["name"]=str(data[int(self.comboBox_2.currentIndex())]["OBJECT_NAME"])
-        self.color_child[str([self.parent_tree])]=color
+        self.color_child[str([self.parent_tree])] = color
 
         self.parent_tree.setForeground(0, QColor(color["color"][0], color["color"][1], color["color"][2]))
 
@@ -192,7 +261,6 @@ class MyQtApp(QMainWindow):
                 parent_item.takeChild(parent_item.indexOfChild(item_to_remove))
             else:
                 self.treeWidget.takeTopLevelItem(self.treeWidget.indexOfTopLevelItem(item_to_remove))
-
         return
 
     def pushButton_3_func(self):
@@ -264,7 +332,6 @@ class MyQtApp(QMainWindow):
                             "Total Mass",
                             "Mission authorisation"]}
 
-        param_dic ={}
         rocket_1 = Rocket_class(STAGES=stages_combination["Solid+RP1"],PAYLOAD_MASS=230)
         rocket_1.build()
         mission_1 = Mission_class(CLIENT="CNES",ALTITUDE=340,ROCKET=rocket_1)
@@ -279,13 +346,6 @@ if __name__ == '__main__':
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
     list_sat_name = []
-
-    with open(dir_path + '\\jsons\\param.json', 'w') as f:
-            json.dump([{"val":[0],
-                        "date":["0", " 0", " 0", " 0", " 0"],
-                        "live":2,
-                        "Dt":["0", " 0", " 0", " 0", " 0"],
-                        "color": {"color":[0, 0, 255]}}], f)
             
     with open(dir_path + '\\jsons\\data.json', 'r') as file:
         data = json.load(file)  
@@ -295,5 +355,6 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     ui = MyQtApp()
     ui.show()
-    app.exec_()
+    sys.exit(app.exec_())
 
+# Transférer les fonction et liens de la fenetre de Rocket design dans sa classe dédié

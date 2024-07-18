@@ -316,7 +316,7 @@ class Orbit {
       Math.pow(this.MUE / this.MEAN_MOTION_SI ** 2, 1 / 3) * 1000;
 
     const nbIts = parseInt(nbOrbit * this.PERIOD);
-    const nbPts = parseInt(nbOrbit * 200);
+    const nbPts = parseInt(nbOrbit * 50);
     const T = this.create_arrange(0, parseInt(nbIts), parseInt(nbIts / nbPts));
     this.EPOCH_NOW = d2;
     const dt = (d2 - d1) / 1000 - 3600; //PLS MAKE AUTOMATIC THE GMT+01:00 for paris => -3600
