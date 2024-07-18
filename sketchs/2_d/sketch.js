@@ -52,7 +52,7 @@ function draw() {
     push();
     stroke(color[index_1][0], color[index_1][1], color[index_1][2]);
     strokeWeight(3);
-    beginShape(POINTS);
+    beginShape();
     for (let index = 0; index < my_object.lat.length; index++) {
       vertex(my_object.lon[index], -my_object.lat[index]);
     }

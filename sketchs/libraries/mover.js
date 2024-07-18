@@ -263,8 +263,8 @@ class Orbit {
       let b = 6356752.314235;
       let f = (a - b) / a;
 
-      this.lat[j] =
-        (180 / Math.PI) * Math.atan(Math.tan(this.lat[j]) * (1 - f * f));
+      this.lat[j] =(180 / Math.PI) * Math.atan(Math.tan(this.lat[j]) * (1 - f * f));
+
       //lat = np.rad2deg(np.arctan(np.tan(lat)*(1-f**2)))
       //lat = (np.arcsin(z/p))
       //this.lat[j] = (180 / Math.PI) * Math.atan(Math.tan());
@@ -319,7 +319,8 @@ class Orbit {
     const nbPts = parseInt(nbOrbit * 50);
     const T = this.create_arrange(0, parseInt(nbIts), parseInt(nbIts / nbPts));
     this.EPOCH_NOW = d2;
-    const dt = (d2 - d1) / 1000 - 3600; //PLS MAKE AUTOMATIC THE GMT+01:00 for paris => -3600
+    var offset = new Date().getTimezoneOffset();
+    const dt = (d2 - d1) / 1000 + (offset/60)*3600; //PLS MAKE AUTOMATIC THE GMT+01:00 for paris => -3600
 
     this.R = [
       this.create_array(0, nbPts),
