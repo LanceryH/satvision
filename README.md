@@ -31,6 +31,7 @@ The main objectifs:
 ```
 pip install numpy
 pip install PyQt5
+
 pip install PyQtWebEngine
 ```
 
@@ -42,7 +43,7 @@ pip install PyQtWebEngine
 ## Preview
 <img src="https://github.com/user-attachments/assets/2aa2dbe0-5e9e-473d-a4a8-ae33b9c048d2" alt="drawing" width="70%" height="70%"/>
 
-<img src="https://github.com/user-attachments/assets/4f78f54b-7036-41ac-94d6-23108107f966" alt="drawing" width="70%" height="70%"/>
+<img src="https://github.com/user-attachments/assets/59b31d04-9587-4f2e-9725-40f9122dad3a" alt="drawing" width="70%" height="70%"/>
 
 <img src="https://github.com/user-attachments/assets/1f52f941-9f2d-4ca1-bbbe-296056d1309f" alt="drawing" width="70%" height="70%"/>
 
