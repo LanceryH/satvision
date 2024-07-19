@@ -41,11 +41,11 @@ pip install PyQtWebEngine
 [Rocket calculation class](https://github.com/LanceryH/satvision/blob/ce2eef65915271421f35c3ef88ad90c770a4b9ad/source/mission.py)
 
 ## Preview
-<img src="https://github.com/user-attachments/assets/2aa2dbe0-5e9e-473d-a4a8-ae33b9c048d2" alt="drawing" width="70%" height="70%"/>
+<img src="https://github.com/user-attachments/assets/2aa2dbe0-5e9e-473d-a4a8-ae33b9c048d2" alt="drawing" width="50%" height="50%"/>
 
-<img src="https://github.com/user-attachments/assets/59b31d04-9587-4f2e-9725-40f9122dad3a" alt="drawing" width="70%" height="70%"/>
+<img src="https://github.com/user-attachments/assets/59b31d04-9587-4f2e-9725-40f9122dad3a" alt="drawing" width="50%" height="50%"/>
 
-<img src="https://github.com/user-attachments/assets/76bf133d-0763-4bf3-a030-a82602578377" alt="drawing" width="70%" height="70%"/>
+<img src="https://github.com/user-attachments/assets/76bf133d-0763-4bf3-a030-a82602578377" alt="drawing" width="50%" height="50%"/>
 
 ## Tuto
 
