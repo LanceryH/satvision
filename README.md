@@ -32,8 +32,11 @@ The main objectifs:
 ```
 pip install numpy
 pip install PyQt5
-
 pip install PyQtWebEngine
+```
+
+```
+python >= 3.12 
 ```
 
 ## Algorithms
