@@ -17,6 +17,7 @@ class Window_3D(QWidget):
         super().__init__()
         self.dad = None
         loadUi(dir_path +"\\ui\\window_3D.ui",self)
+        self.setWindowIcon(QIcon(dir_path + '\\image\\logo.ico'))
         layout = QVBoxLayout()
         self.webviewframe = QWebEngineView(self.widget)
         layout.addWidget(self.webviewframe)
@@ -38,6 +39,7 @@ class Window_2D(QWidget):
         super().__init__()
         self.dad = None
         loadUi(dir_path +"\\ui\\window_2D.ui",self)
+        self.setWindowIcon(QIcon(dir_path + '\\image\\logo.ico'))
         layout = QVBoxLayout()
         self.webviewframe = QWebEngineView(self.widget)
         layout.addWidget(self.webviewframe)
@@ -58,6 +60,7 @@ class Window_Rocket(QWidget):
     def __init__(self):
         super().__init__()
         loadUi(dir_path +"\\ui\\window_rocket.ui",self)
+        self.setWindowIcon(QIcon(dir_path + '\\image\\logo.ico'))
         self.show()
         
 class Window_Nozzle(QWidget):
@@ -68,4 +71,5 @@ class Window_Nozzle(QWidget):
     def __init__(self):
         super().__init__()
         loadUi(dir_path +"\\ui\\window_nozzle.ui",self)
+        self.setWindowIcon(QIcon(dir_path + '\\image\\logo.ico'))
         self.show()

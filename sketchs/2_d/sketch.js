@@ -53,7 +53,12 @@ function draw() {
     stroke(color[index_1][0], color[index_1][1], color[index_1][2]);
     strokeWeight(3);
     beginShape();
-    for (let index = 0; index < my_object.lat.length; index++) {
+    vertex(my_object.lon[0], -my_object.lat[0])
+    for (let index = 1; index < my_object.lat.length; index++) {
+      if (Math.abs(my_object.lon[index]-my_object.lon[index-1])>170) {
+        endShape();
+        beginShape();
+      }
       vertex(my_object.lon[index], -my_object.lat[index]);
     }
     endShape();

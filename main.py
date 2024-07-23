@@ -23,6 +23,7 @@ class MyQtApp(QMainWindow):
     def __init__(self):
         super().__init__()
         loadUi(dir_path +"\\ui\\window.ui",self)
+        self.setWindowIcon(QIcon(dir_path + '\\image\\logo.ico'))
         
         # Création du menu pour la "view"
         self.actionUpdate = QAction(QIcon(dir_path + "\\ui\\images\\update.png"), "&Update", self)

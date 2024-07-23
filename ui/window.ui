@@ -9,12 +9,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>471</width>
-    <height>600</height>
+    <width>479</width>
+    <height>617</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Satvision</string>
   </property>
   <property name="unifiedTitleAndToolBarOnMac">
    <bool>false</bool>
@@ -198,7 +198,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Live time</string>
+       <string> Live time</string>
       </property>
      </widget>
     </widget>
@@ -399,7 +399,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>471</width>
+     <width>479</width>
      <height>22</height>
     </rect>
    </property>
