@@ -1,4 +1,5 @@
-<div align="center">
+<div align="center"> 
+<img src="https://github.com/user-attachments/assets/87fc454d-64a2-47a1-869f-3a18b618e451" alt="drawing" width="20%" height="20%"/>
 <pre>
  ____    _  _______     _____ ____ ___ ___  _   _ 
 / ___|  / \|_   _\ \   / /_ _/ ___|_ _/ _ \| \ | |
@@ -31,6 +32,7 @@ The main objectifs:
 ```
 pip install numpy
 pip install PyQt5
+
 pip install PyQtWebEngine
 ```
 
@@ -40,11 +42,11 @@ pip install PyQtWebEngine
 [Rocket calculation class](https://github.com/LanceryH/satvision/blob/ce2eef65915271421f35c3ef88ad90c770a4b9ad/source/mission.py)
 
 ## Preview
-<img src="https://github.com/LanceryH/satvision/assets/108919405/5594c15a-89de-4198-9f2e-e1c458e0816f" alt="drawing" width="70%" height="70%"/>
+<img src="https://github.com/user-attachments/assets/2aa2dbe0-5e9e-473d-a4a8-ae33b9c048d2" alt="drawing" width="50%" height="50%"/>
 
-<img src="https://github.com/LanceryH/satvision/assets/108919405/0e45bab5-68b5-4712-a36f-d583a5794fc5" alt="drawing" width="70%" height="70%"/>
+<img src="https://github.com/user-attachments/assets/59b31d04-9587-4f2e-9725-40f9122dad3a" alt="drawing" width="50%" height="50%"/>
 
-<img src="https://github.com/LanceryH/satvision/assets/108919405/5fb63844-9ce8-4f06-9080-0c26b05e71c8" alt="drawing" width="70%" height="70%"/>
+<img src="https://github.com/user-attachments/assets/76bf133d-0763-4bf3-a030-a82602578377" alt="drawing" width="50%" height="50%"/>
 
 ## Tuto
 
