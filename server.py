@@ -4,6 +4,7 @@ from satellite import *
 import pandas as pd
 import threading
 import time
+from datetime import datetime, timezone
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -33,16 +34,26 @@ def handle_send_data(data):
     TLE_data = data.to_numpy()
     objects = {}
     objects["Names"] = TLE_data[0,:].tolist()
-    objects["Colors"] = TLE_data[-1,:].tolist()
-    print('Client:', objects)
+    objects["Colors"] = TLE_data[-4,:].tolist()
     for i in range(np.shape(TLE_data)[1]):   
-        sat = Satellite(*TLE_data[:9,i], NB_ORBITS=1, TIME_SIMU=1000)
+        sat = Satellite(*TLE_data[:9,i], NB_ORBITS=1, TIME_SIMU_START=TLE_data[-2,:].tolist()[i], TIME_SIMU_END=TLE_data[-1,:].tolist()[i])
         sat.future_it()
         objects[sat.NAME] = sat.position.geoorbit.XYZ.tolist()
-        print(sat.position.inertial.XYZ.tolist()[0][0])
-        print(sat.position.geoorbit.XYZ.tolist()[0][0])
     socketio.emit('send_data', objects)
 
+@socketio.on('send_data_live')
+def handle_send_data(data):
+    data = pd.DataFrame(data)
+    TLE_data = data.to_numpy()
+    objects = {}
+    objects["Names"] = TLE_data[0,:].tolist()
+    objects["Colors"] = TLE_data[-4,:].tolist()
+    for i in range(np.shape(TLE_data)[1]):  
+        sat = Satellite(*TLE_data[:9,i], NB_ORBITS=1, TIME_SIMU_START=TLE_data[-3,:].tolist()[i], TIME_SIMU_END=TLE_data[-3,:].tolist()[i])
+        sat.future_it()
+        objects[sat.NAME] = sat.position.geoorbit.XYZ.tolist()
+    socketio.emit('send_data_live', objects)
+    
 @socketio.on('disconnect')
 def handle_disconnect():
     global should_shutdown

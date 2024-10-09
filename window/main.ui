@@ -18,9 +18,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>90</y>
+      <y>100</y>
       <width>351</width>
-      <height>191</height>
+      <height>181</height>
      </rect>
     </property>
     <column>
@@ -108,6 +108,19 @@
     <property name="geometry">
      <rect>
       <x>180</x>
+      <y>40</y>
+      <width>131</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="displayFormat">
+     <string>dd/MM/yyyy HH:mm:ss</string>
+    </property>
+   </widget>
+   <widget class="QDateTimeEdit" name="dateTimeEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
       <y>10</y>
       <width>131</width>
       <height>22</height>
@@ -117,17 +130,30 @@
      <string>dd/MM/yyyy HH:mm:ss</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QDateTimeEdit" name="dateTimeEdit_3">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>10</y>
-      <width>22</width>
+      <x>180</x>
+      <y>70</y>
+      <width>131</width>
       <height>22</height>
      </rect>
     </property>
+    <property name="displayFormat">
+     <string>dd/MM/yyyy HH:mm:ss</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>40</y>
+      <width>70</width>
+      <height>17</height>
+     </rect>
+    </property>
     <property name="text">
-     <string>Ⅱ</string>
+     <string/>
     </property>
    </widget>
   </widget>

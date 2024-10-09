@@ -60,7 +60,8 @@ class Satellite:
     G: float = 6.67384e-11
     NB_ORBITS: int = 1
     NB_POINTS: int = 50
-    TIME_SIMU: int = 1000
+    TIME_SIMU_START: int = '09.10.2024 22:48:42'
+    TIME_SIMU_END: int = '09.10.2024 23:48:42'
     position = Position
     speed = Speed
     
@@ -72,6 +73,7 @@ class Satellite:
 
     def __post_init__(self):
         self.PERIOD = (1 / self.MEAN_MOTION) * 86400  # seconds in a day
+        self.SIMU_DURATION = (datetime.strptime(self.TIME_SIMU_END, '%d.%m.%Y %H:%M:%S.%f') - datetime.strptime(self.TIME_SIMU_START, '%d.%m.%Y %H:%M:%S.%f')).total_seconds()
         self.parse_epoch()
         self.convert_degrees_to_radians()
         self.calculate_orbital_parameters()
@@ -79,8 +81,8 @@ class Satellite:
 
     def parse_epoch(self):
         self.d1 = datetime.strptime(self.EPOCH, '%Y-%m-%dT%H:%M:%S.%f')
-        self.d2 = datetime.now(timezone.utc)
-        self.dt = (self.d2 - self.d1.replace(tzinfo=pytz.UTC)).total_seconds()
+        self.d2 = datetime.strptime(self.TIME_SIMU_START, '%d.%m.%Y %H:%M:%S.%f')
+        self.dt = (self.d2 - self.d1).total_seconds()
 
     def convert_degrees_to_radians(self):
         self.ECCENTRICITY = np.deg2rad(self.ECCENTRICITY)
@@ -90,7 +92,11 @@ class Satellite:
         self.MEAN_ANOMALY = np.deg2rad(self.MEAN_ANOMALY)
 
     def calculate_orbital_parameters(self):
-        self.time = np.linspace(0, self.PERIOD, self.NB_POINTS)
+        if self.SIMU_DURATION != 0:
+            self.time = np.linspace(0, self.SIMU_DURATION, self.NB_POINTS)
+        else:
+            self.NB_POINTS = 1
+            self.time = np.linspace(0, 1, self.NB_POINTS)
         self.MEAN_MOTION_SI = 2 * np.pi / self.PERIOD
         self.SEMI_MAJOR_AXIS = ((self.MUE / (self.MEAN_MOTION_SI ** 2)) ** (1 / 3)) * 1000
         self.MEAN_MOTION = np.sqrt(self.EARTH_MASS * self.G / self.SEMI_MAJOR_AXIS ** 3)
@@ -134,14 +140,14 @@ class Satellite:
         return np.vstack((x,y,z))
     
     def initial_state_parameters(self):   
-        self.position.orbital = VEC_3(self.calcul_orbital_mecanic(self.MEAN_ANOMALY)[0])
-        self.speed.orbital = VEC_3(self.calcul_orbital_mecanic(self.MEAN_ANOMALY)[1])
-        self.position.inertial = VEC_3(self.calcul_inertial_mecanic(self.MEAN_ANOMALY, 0)[0])
-        self.speed.inertial = VEC_3(self.calcul_inertial_mecanic(self.MEAN_ANOMALY, 0)[1])
-        self.position.geografic = VEC_2(self.calcul_geografic_mecanic(self.MEAN_ANOMALY, 0)[0])
+        #self.position.orbital = VEC_3(self.calcul_orbital_mecanic(self.MEAN_ANOMALY)[0])
+        #self.speed.orbital = VEC_3(self.calcul_orbital_mecanic(self.MEAN_ANOMALY)[1])
+        #self.position.inertial = VEC_3(self.calcul_inertial_mecanic(self.MEAN_ANOMALY, 0)[0])
+        #self.speed.inertial = VEC_3(self.calcul_inertial_mecanic(self.MEAN_ANOMALY, 0)[1])
+        #self.position.geografic = VEC_2(self.calcul_geografic_mecanic(self.MEAN_ANOMALY, 0)[0])
         self.position.geoorbit = VEC_3(self.calcul_geoorbit_mecanic(self.MEAN_ANOMALY, 0))
-        self.position.plot = self.position.geografic
-        
+        #self.position.plot = self.position.geografic
+        pass
         
     
     @property
@@ -201,17 +207,17 @@ class Satellite:
                 if np.abs(delta) < epsilon:
                     break
                 
-            self.position.orbital.XYZ = np.hstack((self.position.orbital.XYZ, self.calcul_orbital_mecanic(E)[0]))
-            self.speed.orbital.XYZ = np.hstack((self.speed.orbital.XYZ, self.calcul_orbital_mecanic(E)[1]))
-            self.position.inertial.XYZ = np.hstack((self.position.inertial.XYZ, self.calcul_inertial_mecanic(E, i)[0]))            
-            self.speed.inertial.XYZ = np.hstack((self.speed.inertial.XYZ, self.calcul_inertial_mecanic(E, i)[1]))
-            self.position.geografic.LON_LAT = np.hstack((self.position.geografic.LON_LAT, self.calcul_geografic_mecanic(E, i)[0]))
+            #self.position.orbital.XYZ = np.hstack((self.position.orbital.XYZ, self.calcul_orbital_mecanic(E)[0]))
+            #self.speed.orbital.XYZ = np.hstack((self.speed.orbital.XYZ, self.calcul_orbital_mecanic(E)[1]))
+            #self.position.inertial.XYZ = np.hstack((self.position.inertial.XYZ, self.calcul_inertial_mecanic(E, i)[0]))            
+            #self.speed.inertial.XYZ = np.hstack((self.speed.inertial.XYZ, self.calcul_inertial_mecanic(E, i)[1]))
+            #self.position.geografic.LON_LAT = np.hstack((self.position.geografic.LON_LAT, self.calcul_geografic_mecanic(E, i)[0]))
             self.position.geoorbit.XYZ = np.hstack((self.position.geoorbit.XYZ, self.calcul_geoorbit_mecanic(E, i)))
             
-        lon_plot = self.position.geografic.LON.tolist()
-        lat_plot = self.position.geografic.LAT.tolist()
-        for ind_i in range(0,len(lon_plot)-1):
-            if np.abs(lon_plot[ind_i]+lon_plot[ind_i+1])<np.abs(lon_plot[ind_i]) and np.abs(lon_plot[ind_i])+np.abs(lon_plot[ind_i+1])>270:
-                lon_plot[ind_i]=np.nan
-                lat_plot[ind_i]=np.nan
-        self.position.plot.LON_LAT = np.vstack((lon_plot,lat_plot))
+        #lon_plot = self.position.geografic.LON.tolist()
+        #lat_plot = self.position.geografic.LAT.tolist()
+        #for ind_i in range(0,len(lon_plot)-1):
+        #    if np.abs(lon_plot[ind_i]+lon_plot[ind_i+1])<np.abs(lon_plot[ind_i]) and np.abs(lon_plot[ind_i])+np.abs(lon_plot[ind_i+1])>270:
+        #        lon_plot[ind_i]=np.nan
+        #        lat_plot[ind_i]=np.nan
+        #self.position.plot.LON_LAT = np.vstack((lon_plot,lat_plot))

@@ -20,6 +20,10 @@ function setup() {
         sat_data = data;
     });
 
+    socket.on('send_data_live', function(data) {
+        sat_data_live = data;
+    });
+
     socket.on('view_status', function(data) {
         orbit_status = data["Orbit"];
     });
@@ -69,7 +73,7 @@ function draw() {
                 strokeWeight(16);
                 stroke(255,0,0);
                 beginShape(POINTS);
-                vertex(sat_data[names[i]][0][0], -sat_data[names[i]][1][0], sat_data[names[i]][2][0]);
+                vertex(sat_data_live[names[i]][0][0], -sat_data_live[names[i]][1][0], sat_data_live[names[i]][2][0]);
                 endShape();
                 pop();
 
@@ -77,7 +81,7 @@ function draw() {
                 strokeWeight(14);
                 stroke(0);
                 beginShape(POINTS);
-                vertex(sat_data[names[i]][0][0], -sat_data[names[i]][1][0], sat_data[names[i]][2][0]);
+                vertex(sat_data_live[names[i]][0][0], -sat_data_live[names[i]][1][0], sat_data_live[names[i]][2][0]);
                 endShape();
                 pop();
             }
@@ -86,7 +90,7 @@ function draw() {
             strokeWeight(10);
             stroke(colors[i]);
             beginShape(POINTS);
-            vertex(sat_data[names[i]][0][0], -sat_data[names[i]][1][0], sat_data[names[i]][2][0]);
+            vertex(sat_data_live[names[i]][0][0], -sat_data_live[names[i]][1][0], sat_data_live[names[i]][2][0]);
             endShape();
             pop();
         }

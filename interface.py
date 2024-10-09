@@ -24,7 +24,12 @@ class MyQtApp(QMainWindow):
         super().__init__()
         loadUi(dir_path +"/window/main.ui",self)
         self.setWindowTitle('Satvision 3.0')
-                
+        
+        self.runStatus = False
+        self.viewStatus = {"Orbit": False}
+        self.treeStatus = {}
+        self.dataToSend = {}
+         
         self.menuFileUpdate = QAction(QIcon(dir_path + "/window/image/update.png"),"&Update", self)
         self.menuFile.addAction(self.menuFileUpdate)
         self.menuFileUpdate.triggered.connect(self.menuFileUpdate_func)
@@ -40,7 +45,7 @@ class MyQtApp(QMainWindow):
         self.pushButton.clicked.connect(self.pushButton_func)
         self.pushButton_2.clicked.connect(self.pushButton_2_func)
         self.pushButton_3.clicked.connect(self.pushButton_3_func)
-        self.pushButton_5.clicked.connect(self.pushButton_5_func)
+        self.checkBox.clicked.connect(self.checkBox_func)
 
         self.comboBox.addItems(data_sat_pd["OBJECT_NAME"])
         
@@ -54,23 +59,38 @@ class MyQtApp(QMainWindow):
 
         self.dateTimeEdit.setDateTime(QDateTime.currentDateTime())
         self.dateTimeEdit.dateTimeChanged.connect(self.dateTimeEdit_func)
+        self.dateTimeEdit_2.setDateTime(QDateTime.currentDateTime().addSecs(-2*3600))
+        self.dateTimeEdit_2.dateTimeChanged.connect(self.dateTimeEdit_2_func)
+        self.dateTimeEdit_3.setDateTime(QDateTime.currentDateTime().addSecs(2*3600))
+        self.dateTimeEdit_3.dateTimeChanged.connect(self.dateTimeEdit_3_func)
         
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_time)
         self.timer.start(1000)  
         
-        self.runStatus = True
-        self.viewStatus = {"Orbit": False}
-        self.treeStatus = {}
         self.show()
     
-    def pushButton_5_func(self):
+    def checkBox_func(self):
         self.runStatus = not(self.runStatus)
-        print(self.runStatus)
-        
+        #self.dateTimeEdit.setEnabled(self.runStatus)
+        #self.dateTimeEdit_2.setDisabled(self.runStatus)
+        #self.dateTimeEdit_3.setDisabled(self.runStatus)
+            
     def dateTimeEdit_func(self):
-        print("changed")
+        for index in range(self.treeWidget.topLevelItemCount()):
+            self.treeWidget.topLevelItem(index).child(18).child(0).setText(0, self.dateTimeEdit.dateTime().toString("dd.MM.yyyy hh:mm:ss.zzz"))
+        if self.runStatus:
+            self.socketio.emit('send_data_live', getFromTreeWidget(self.treeWidget))
+    
+    def dateTimeEdit_2_func(self):
+        for index in range(self.treeWidget.topLevelItemCount()):
+            self.treeWidget.topLevelItem(index).child(19).child(0).setText(0, self.dateTimeEdit_2.dateTime().toString("dd.MM.yyyy hh:mm:ss.zzz"))
         
+    def dateTimeEdit_3_func(self):
+        for index in range(self.treeWidget.topLevelItemCount()):
+            self.treeWidget.topLevelItem(index).child(20).child(0).setText(0, self.dateTimeEdit_3.dateTime().toString("dd.MM.yyyy hh:mm:ss.zzz"))
+        
+          
     def update_time(self):
         if self.runStatus:
             self.dateTimeEdit.setDateTime(self.dateTimeEdit.dateTime().addSecs(1))
@@ -93,13 +113,16 @@ class MyQtApp(QMainWindow):
    
     def pushButton_func(self):
         self.socketio.emit('send_data', getFromTreeWidget(self.treeWidget))
+        self.socketio.emit('send_data_live', getFromTreeWidget(self.treeWidget))
 
-        
     def pushButton_2_func(self):
         indexChosen = self.comboBox.currentIndex()
         nameChosen = data_sat_pd.iloc[indexChosen]["OBJECT_NAME"]
         dataTree = data_sat_pd.iloc[indexChosen].to_dict()
         dataTree["COLOR"] = "#"+''.join([random.choice('ABCDEF0123456789') for i in range(6)])
+        dataTree["TIME_SIMU_LIVE"] = self.dateTimeEdit.dateTime().toString("dd.MM.yyyy hh:mm:ss.zzz")
+        dataTree["TIME_SIMU_START"] = self.dateTimeEdit_2.dateTime().toString("dd.MM.yyyy hh:mm:ss.zzz")
+        dataTree["TIME_SIMU_END"] = self.dateTimeEdit_3.dateTime().toString("dd.MM.yyyy hh:mm:ss.zzz")
         addToTreeWidget(self.treeWidget, {nameChosen: dataTree})
         self.treeWiget_selected()
 
@@ -116,7 +139,6 @@ class MyQtApp(QMainWindow):
     
     def menuViewOrbit_func(self):
         if self.menuViewOrbit.isChecked():
-            print("checked")
             self.viewStatus["Orbit"] = 1
         else:
             self.viewStatus["Orbit"] = 0
