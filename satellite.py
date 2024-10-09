@@ -36,6 +36,7 @@ class Position:
     orbital : VEC_3 = field(init=False)
     inertial : VEC_3 = field(init=False)
     geografic : VEC_2 = field(init=False)
+    geoorbit : VEC_3 = field(init=False)
     plot : VEC_2 = field(init=False)
     
 @dataclass
@@ -58,7 +59,7 @@ class Satellite:
     EARTH_MASS: float = 5.972e24
     G: float = 6.67384e-11
     NB_ORBITS: int = 1
-    NB_POINTS_PER_ORBIT: int = 50
+    NB_POINTS: int = 50
     TIME_SIMU: int = 1000
     position = Position
     speed = Speed
@@ -71,7 +72,6 @@ class Satellite:
 
     def __post_init__(self):
         self.PERIOD = (1 / self.MEAN_MOTION) * 86400  # seconds in a day
-        self.NB_POINTS = int(self.TIME_SIMU*self.NB_POINTS_PER_ORBIT//self.PERIOD)
         self.parse_epoch()
         self.convert_degrees_to_radians()
         self.calculate_orbital_parameters()
@@ -90,7 +90,7 @@ class Satellite:
         self.MEAN_ANOMALY = np.deg2rad(self.MEAN_ANOMALY)
 
     def calculate_orbital_parameters(self):
-        self.time = np.linspace(0, self.TIME_SIMU, self.NB_POINTS)
+        self.time = np.linspace(0, self.PERIOD, self.NB_POINTS)
         self.MEAN_MOTION_SI = 2 * np.pi / self.PERIOD
         self.SEMI_MAJOR_AXIS = ((self.MUE / (self.MEAN_MOTION_SI ** 2)) ** (1 / 3)) * 1000
         self.MEAN_MOTION = np.sqrt(self.EARTH_MASS * self.G / self.SEMI_MAJOR_AXIS ** 3)
@@ -124,15 +124,24 @@ class Satellite:
             lon -= 360
         elif lon < -180:
             lon += 360
-        return np.vstack((lon,lat))
-        
+        return np.vstack((lon,lat)),p
+
+    def calcul_geoorbit_mecanic(self, ANOMALY, i):
+        lon_lat, alt = self.calcul_geografic_mecanic(ANOMALY, i)
+        x = np.cos(np.deg2rad(lon_lat[1]))*np.sin(np.deg2rad(lon_lat[0]))*alt/1000
+        y = np.sin(np.deg2rad(lon_lat[1]))*alt/1000
+        z = np.cos(np.deg2rad(lon_lat[1]))*np.cos(np.deg2rad(lon_lat[0]))*alt/1000
+        return np.vstack((x,y,z))
+    
     def initial_state_parameters(self):   
         self.position.orbital = VEC_3(self.calcul_orbital_mecanic(self.MEAN_ANOMALY)[0])
         self.speed.orbital = VEC_3(self.calcul_orbital_mecanic(self.MEAN_ANOMALY)[1])
         self.position.inertial = VEC_3(self.calcul_inertial_mecanic(self.MEAN_ANOMALY, 0)[0])
         self.speed.inertial = VEC_3(self.calcul_inertial_mecanic(self.MEAN_ANOMALY, 0)[1])
-        self.position.geografic = VEC_2(self.calcul_geografic_mecanic(self.MEAN_ANOMALY, 0))
+        self.position.geografic = VEC_2(self.calcul_geografic_mecanic(self.MEAN_ANOMALY, 0)[0])
+        self.position.geoorbit = VEC_3(self.calcul_geoorbit_mecanic(self.MEAN_ANOMALY, 0))
         self.position.plot = self.position.geografic
+        
         
     
     @property
@@ -196,7 +205,9 @@ class Satellite:
             self.speed.orbital.XYZ = np.hstack((self.speed.orbital.XYZ, self.calcul_orbital_mecanic(E)[1]))
             self.position.inertial.XYZ = np.hstack((self.position.inertial.XYZ, self.calcul_inertial_mecanic(E, i)[0]))            
             self.speed.inertial.XYZ = np.hstack((self.speed.inertial.XYZ, self.calcul_inertial_mecanic(E, i)[1]))
-            self.position.geografic.LON_LAT = np.hstack((self.position.geografic.LON_LAT, self.calcul_geografic_mecanic(E, i)))
+            self.position.geografic.LON_LAT = np.hstack((self.position.geografic.LON_LAT, self.calcul_geografic_mecanic(E, i)[0]))
+            self.position.geoorbit.XYZ = np.hstack((self.position.geoorbit.XYZ, self.calcul_geoorbit_mecanic(E, i)))
+            
         lon_plot = self.position.geografic.LON.tolist()
         lat_plot = self.position.geografic.LAT.tolist()
         for ind_i in range(0,len(lon_plot)-1):

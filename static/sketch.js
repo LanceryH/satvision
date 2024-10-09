@@ -14,7 +14,7 @@ function setup() {
     angleMode(DEGREES);
     socket = io(); 
 
-    socket.on('receive_data', function(data) {
+    socket.on('send_data', function(data) {
         names = data["Names"];
         colors = data["Colors"];
         sat_data = data;
@@ -47,15 +47,29 @@ function draw() {
     rotateZ(0);
     sphere(6371, 24, 24);
     pop();  
-
+    
     if (names.length > 0) {    
         for (let i = 0; i < names.length; i++) {
             if (selected_status[names[i]]==2){
+                if (orbit_status == 1) {
+                    if (selected_status[names[i]]==2) {
+                        push();
+                        strokeWeight(1);
+                        stroke(255,0,0);
+                        beginShape();
+                        for (let j = 0; j < sat_data[names[0]][0].length; j++) {
+                            vertex(sat_data[names[i]][0][j], -sat_data[names[i]][1][j], sat_data[names[i]][2][j]);
+                        }
+                        noFill();
+                        endShape();
+                        pop();
+                    }
+                }
                 push();
                 strokeWeight(16);
                 stroke(255,0,0);
                 beginShape(POINTS);
-                vertex(sat_data[names[i]][0][0]/1000, sat_data[names[i]][1][0]/1000, sat_data[names[i]][2][0]/1000);
+                vertex(sat_data[names[i]][0][0], -sat_data[names[i]][1][0], sat_data[names[i]][2][0]);
                 endShape();
                 pop();
 
@@ -63,7 +77,7 @@ function draw() {
                 strokeWeight(14);
                 stroke(0);
                 beginShape(POINTS);
-                vertex(sat_data[names[i]][0][0]/1000, sat_data[names[i]][1][0]/1000, sat_data[names[i]][2][0]/1000);
+                vertex(sat_data[names[i]][0][0], -sat_data[names[i]][1][0], sat_data[names[i]][2][0]);
                 endShape();
                 pop();
             }
@@ -72,26 +86,9 @@ function draw() {
             strokeWeight(10);
             stroke(colors[i]);
             beginShape(POINTS);
-            vertex(sat_data[names[i]][0][0]/1000, sat_data[names[i]][1][0]/1000, sat_data[names[i]][2][0]/1000);
+            vertex(sat_data[names[i]][0][0], -sat_data[names[i]][1][0], sat_data[names[i]][2][0]);
             endShape();
             pop();
-        }
-
-        if (orbit_status == 1) {
-            for (let i = 0; i < names.length; i++) {
-                if (selected_status[names[i]]==2) {
-                    push();
-                    strokeWeight(1);
-                    stroke(colors[i]);
-                    beginShape(LINES);
-                    for (let j = 0; j < sat_data[names[0]][0].length; j++) {
-                        vertex(sat_data[names[i]][0][j]/1000, sat_data[names[i]][1][j]/1000, sat_data[names[i]][2][j]/1000);
-                    }
-                    noFill();
-                    endShape();
-                    pop();
-                }
-            }
         }
     }
 }

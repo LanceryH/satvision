@@ -33,10 +33,6 @@ class MyQtApp(QMainWindow):
         self.menuFile.addAction(self.menuFileNew)
         #self.menuFileNew.triggered.connect(self.menuFileNew_func)
         
-        self.menuView3D = QAction(QIcon(dir_path + "/window/image/logo_3d_view.png"),"&3D View", self, checkable=True, checked=False)
-        self.menuView.addAction(self.menuView3D)
-        self.menuView3D.triggered.connect(self.menuView3D_func)
-        
         self.menuViewOrbit = QAction("Orbit", self, checkable=True, checked=False)
         self.menuView.addAction(self.menuViewOrbit)
         self.menuViewOrbit.triggered.connect(self.menuViewOrbit_func)
@@ -53,10 +49,20 @@ class MyQtApp(QMainWindow):
         self.socketio.connect('http://127.0.0.1:5000')
         self.socketio.emit('send_message', 'Hello from interface')
         
+        self.ui_3D = Window_3D()
+
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.update_time)
+        self.timer.start(1000)  # Update every 1000 milliseconds (1 second)
+
         self.viewStatus = {"Orbit": False}
         self.treeStatus = {}
         self.show()
-        
+  
+    def update_time(self):
+        current_time = QDateTime.currentDateTime()
+        self.dateTimeEdit.setDateTime(current_time)
+          
     def treeWidget_func(self, item, _):
         try:
             nameClicked = item.child(0).child(0).text(0)
@@ -74,8 +80,6 @@ class MyQtApp(QMainWindow):
         self.socketio.emit('selected_status', self.treeStatus)            
    
     def pushButton_func(self):
-        self.socketio.emit('selected_status', self.treeStatus) 
-        self.socketio.emit('view_status', self.viewStatus)
         self.socketio.emit('send_data', getFromTreeWidget(self.treeWidget))
 
         
@@ -97,11 +101,6 @@ class MyQtApp(QMainWindow):
             file.write(response.text)
             file.close()
             self.socketio.emit('send_message', 'Database updated successfully')
-
-    def menuView3D_func(self):
-        self.ui_3D = Window_3D()
-        self.ui_3D.dad = self
-        self.socketio.emit('send_message', 'Opened 3D View')
     
     def menuViewOrbit_func(self):
         if self.menuViewOrbit.isChecked():
@@ -112,6 +111,5 @@ class MyQtApp(QMainWindow):
         self.socketio.emit('view_status', self.viewStatus)
 
     def closeEvent(self, _):
-        if self.menuView3D.isChecked():
-            self.ui_3D.close()
+        self.ui_3D.close()
         self.socketio.disconnect()

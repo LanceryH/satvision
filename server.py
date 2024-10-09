@@ -34,13 +34,14 @@ def handle_send_data(data):
     objects = {}
     objects["Names"] = TLE_data[0,:].tolist()
     objects["Colors"] = TLE_data[-1,:].tolist()
-    print("Client: ", objects)
+    print('Client:', objects)
     for i in range(np.shape(TLE_data)[1]):   
         sat = Satellite(*TLE_data[:9,i], NB_ORBITS=1, TIME_SIMU=1000)
         sat.future_it()
-        print('Server: Calculated', sat.NAME, 'LON & LAT', sat.position.geografic.LON_LAT[:,0])
-        objects[sat.NAME] = sat.position.inertial.XYZ.tolist()
-    socketio.emit('receive_data', objects)
+        objects[sat.NAME] = sat.position.geoorbit.XYZ.tolist()
+        print(sat.position.inertial.XYZ.tolist()[0][0])
+        print(sat.position.geoorbit.XYZ.tolist()[0][0])
+    socketio.emit('send_data', objects)
 
 @socketio.on('disconnect')
 def handle_disconnect():
