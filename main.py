@@ -6,9 +6,9 @@ from interface import *
 import subprocess
 
 if __name__ == '__main__':
-    subprocess.Popen("python server.py")    
+    sprocess = subprocess.Popen("python server.py")    
     app = QApplication(sys.argv)
     window = MyQtApp()
     window.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec_())       
     

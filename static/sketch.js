@@ -37,7 +37,7 @@ function draw() {
     texture(img);
     strokeWeight(0);
     rotateX(0);
-    //rotateY(-180);
+    rotateY(-180);
     rotateZ(0);
     sphere(6371, 24, 24);
     pop();  

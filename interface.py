@@ -51,7 +51,7 @@ class MyQtApp(QMainWindow):
         
         self.socketio = Client()
         self.socketio.connect('http://127.0.0.1:5000')
-        self.socketio.emit('send_message', 'hello from interface')
+        self.socketio.emit('send_message', 'Hello from interface')
         
         self.viewStatus = {"Orbit": False}
         
@@ -99,3 +99,8 @@ class MyQtApp(QMainWindow):
         else:
             self.viewStatus["Orbit"] = 0
         self.socketio.emit('view_status', self.viewStatus)
+
+    def closeEvent(self, _):
+        if self.menuView3D.isChecked():
+            self.ui_3D.close()
+        self.socketio.disconnect()

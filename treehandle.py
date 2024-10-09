@@ -21,12 +21,13 @@ def addToTreeWidget(tree_widget, data_dict):
             else:
                 item = QTreeWidgetItem([str(value)])
                 parent.addChild(item)
-
         for key, value in data_dict.items():
             parent = QTreeWidgetItem([key])
             tree_widget.addTopLevelItem(parent)
             parent.setIcon(0, QIcon(dir_path + "/window/image/satellite.png"))
             parent.setBackground(0, QColor(value["COLOR"]))
+            parent.setFlags(parent.flags() | Qt.ItemIsUserCheckable)
+            parent.setCheckState(0, Qt.Checked)
             add_items(parent, value)
             
 
