@@ -40,7 +40,8 @@ class MyQtApp(QMainWindow):
         self.pushButton.clicked.connect(self.pushButton_func)
         self.pushButton_2.clicked.connect(self.pushButton_2_func)
         self.pushButton_3.clicked.connect(self.pushButton_3_func)
-        
+        self.pushButton_5.clicked.connect(self.pushButton_5_func)
+
         self.comboBox.addItems(data_sat_pd["OBJECT_NAME"])
         
         self.treeWidget.itemClicked.connect(self.treeWidget_func)
@@ -51,17 +52,28 @@ class MyQtApp(QMainWindow):
         
         self.ui_3D = Window_3D()
 
+        self.dateTimeEdit.setDateTime(QDateTime.currentDateTime())
+        self.dateTimeEdit.dateTimeChanged.connect(self.dateTimeEdit_func)
+        
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_time)
-        self.timer.start(1000)  # Update every 1000 milliseconds (1 second)
-
+        self.timer.start(1000)  
+        
+        self.runStatus = True
         self.viewStatus = {"Orbit": False}
         self.treeStatus = {}
         self.show()
-  
+    
+    def pushButton_5_func(self):
+        self.runStatus = not(self.runStatus)
+        print(self.runStatus)
+        
+    def dateTimeEdit_func(self):
+        print("changed")
+        
     def update_time(self):
-        current_time = QDateTime.currentDateTime()
-        self.dateTimeEdit.setDateTime(current_time)
+        if self.runStatus:
+            self.dateTimeEdit.setDateTime(self.dateTimeEdit.dateTime().addSecs(1))
           
     def treeWidget_func(self, item, _):
         try:
