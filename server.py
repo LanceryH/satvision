@@ -22,6 +22,11 @@ def handle_view_status(data):
     print('Client:', data)
     socketio.emit('view_status', data)
 
+@socketio.on('selected_status')
+def handle_view_status(data):
+    print('Client:', data)
+    socketio.emit('selected_status', data)
+
 @socketio.on('send_data')
 def handle_send_data(data):
     data = pd.DataFrame(data)

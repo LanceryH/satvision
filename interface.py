@@ -54,7 +54,7 @@ class MyQtApp(QMainWindow):
         self.socketio.emit('send_message', 'Hello from interface')
         
         self.viewStatus = {"Orbit": False}
-        
+        self.treeStatus = {}
         self.show()
         
     def treeWidget_func(self, item, _):
@@ -64,21 +64,32 @@ class MyQtApp(QMainWindow):
             dateEpoch = str(epochClicked).split("T")[0].split(" ")[-1]
             timeEpoch = str(epochClicked).split("T")[1].split(":")[:2]
             self.statusBar().showMessage("last updated: "+dateEpoch+" "+timeEpoch[0]+":"+timeEpoch[1], 0)
+            self.treeWiget_selected()
         except:
             pass
+    
+    def treeWiget_selected(self):
+        for index in range(self.treeWidget.topLevelItemCount()):
+            self.treeStatus[self.treeWidget.topLevelItem(index).text(0)] = self.treeWidget.topLevelItem(index).checkState(0)
+        self.socketio.emit('selected_status', self.treeStatus)            
    
     def pushButton_func(self):
+        self.socketio.emit('selected_status', self.treeStatus) 
+        self.socketio.emit('view_status', self.viewStatus)
         self.socketio.emit('send_data', getFromTreeWidget(self.treeWidget))
-    
+
+        
     def pushButton_2_func(self):
         indexChosen = self.comboBox.currentIndex()
         nameChosen = data_sat_pd.iloc[indexChosen]["OBJECT_NAME"]
         dataTree = data_sat_pd.iloc[indexChosen].to_dict()
         dataTree["COLOR"] = "#"+''.join([random.choice('ABCDEF0123456789') for i in range(6)])
         addToTreeWidget(self.treeWidget, {nameChosen: dataTree})
+        self.treeWiget_selected()
 
     def pushButton_3_func(self):
         removeFromTreeWidget(self.treeWidget)
+        self.treeWiget_selected()
         
     def menuFileUpdate_func(self):
         response = requests.get(URL_CELESTRAK)
